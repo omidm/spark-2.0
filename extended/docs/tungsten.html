@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html class="" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/cc545fdb66" type="text/javascript"></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/nr-963.js"></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/ip.js" id="db_ip_api" async=""></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/fbevents.js" async=""></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/438089.js" id="hs-analytics"></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/xoRL8eto.js" id="demandbase_js_lib" async=""></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/conversion_async.js" async="" type="text/javascript"></script>
+  
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/gtm.js" async=""></script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/analytics.js" async=""></script><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(u(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(2),u=t(3),c=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var s=["setPageViewName","setCustomAttribute","finished","addToTrace","inlineHit"],p="api-",l=p+"ixn-";a(s,function(t,e){f[e]=o(p+e,!0,"api")}),f.addPageAction=o(p+"addPageAction",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var d=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){d[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],2:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],3:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?u(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),u=a.length,c=0;c<u;c++)a[c].apply(i,r);var s=f[m[n]];return s&&s.push([w,n,r,i]),i}function p(t,e){g[t]=l(t).concat(e)}function l(t){return g[t]||[]}function d(t){return s[t]=s[t]||o(n)}function v(t,e){c(t,function(t,n){e=e||"feature",m[n]=e,e in f||(f[e]=[])})}var g={},m={},w={on:p,emit:n,get:d,listeners:l,context:e,buffer:v};return w}function i(){return new r}var a="nr@context",u=t("gos"),c=t(2),f={},s={},p=e.exports=o();p.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!h++){var t=y.info=NREUM.info,e=s.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(m,function(e,n){t[e]||(t[e]=n)});var n="https"===g.split(":")[0]||t.sslForHttp;y.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=y.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=t("handle"),c=t(2),f=window,s=f.document,p="addEventListener",l="attachEvent",d=f.XMLHttpRequest,v=d&&d.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:d,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(1);var g=""+location,m={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-963.min.js"},w=d&&v&&v[p]&&!/CriOS/.test(navigator.userAgent),y=e.exports={offset:a(),origin:g,features:{},xhrWrappable:w};s[p]?(s[p]("DOMContentLoaded",i,!1),f[p]("load",r,!1)):(s[l]("onreadystatechange",o),f[l]("onload",r)),u("mark",["firstbyte",a()],null,"api");var h=0},{}]},{},["loader"]);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>Project Tungsten: Bringing Spark Closer to Bare Metal | Databricks blog</title>
+
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://databricks.com/xmlrpc.php">
+<link rel="mask-icon" href="https://databricks.com/mask-icon.svg" color="#FD3A1C">
+<link rel="apple-touch-icon" sizes="57x57" href="https://databricks.com/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://databricks.com/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://databricks.com/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://databricks.com/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://databricks.com/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://databricks.com/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://databricks.com/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://databricks.com/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://databricks.com/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="https://databricks.com/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://databricks.com/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="https://databricks.com/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="https://databricks.com/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="https://databricks.com/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="description" content="Project Tungsten focuses on improving the performance of Spark applications, pushing it closer to the limits of hardware.">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Project Tungsten: Bringing Apache Spark Closer to Bare Metal">
+	<meta property="og:description" content="Project Tungsten focuses on improving the performance of Spark applications, pushing it closer to the limits of hardware.">
+	<meta property="og:url" content="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html">
+	<meta property="og:image" content="https://databricks.com/wp-content/uploads/2016/03/default-open-graph.png">
+	<meta property="article:published_time" content="2015-04-28">
+	<meta property="article:modified_time" content="2016-05-17">
+	<meta property="article:author" content="https://databricks.com/blog/author/rxin">
+	<meta property="article:tag" content="Apache Spark">
+	<meta property="article:tag" content="Engineering Blog">
+	<meta property="article:tag" content="Open Source">
+	<meta property="og:site_name" content="Databricks">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@databricks">
+	<meta name="twitter:site:id" content="1562518867">
+	<meta name="google-site-verification" content="8yr1FGaP6qSpZy8Zu4rpiwcmltb-ajA1JryVMTeqTlk">
+	<meta name="msvalidate.01" content="6F98CDA75F877AEB623786A4F4249F2C">
+
+<!-- Code Inserter module -->
+<!-- hello -->
+<!-- /Code Inserter module -->
+
+<!-- /SEO Ultimate -->
+
+<link rel="dns-prefetch" href="https://databricks.com/">
+<link rel="dns-prefetch" href="https://cdn.rawgit.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="stylesheet" id="databricks-css-bootstrap-css" href="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" id="databricks-css-fancybox-css" href="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/jquery.css" type="text/css" media="all">
+<link rel="stylesheet" id="databricks-css-main-css" href="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/main.css" type="text/css" media="all">
+<link rel="https://api.w.org/" href="https://databricks.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://databricks.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://databricks.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Recent performance improvements in Apache Spark: SQL, Python, DataFrames, and More" href="https://databricks.com/blog/2015/04/24/recent-performance-improvements-in-apache-spark-sql-python-dataframes-and-more.html">
+<link rel="next" title="Spark Summit 2015 in San Francisco is just around the corner!" href="https://databricks.com/blog/2015/05/11/spark-summit-2015-in-san-francisco-is-just-around-the-corner.html">
+<meta name="generator" content="WordPress 4.6">
+<link rel="canonical" href="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html">
+<link rel="shortlink" href="https://databricks.com/?p=3638">
+<link rel="alternate" type="application/json+oembed" href="https://databricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdatabricks.com%2Fblog%2F2015%2F04%2F28%2Fproject-tungsten-bringing-spark-closer-to-bare-metal.html">
+<link rel="alternate" type="text/xml+oembed" href="https://databricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdatabricks.com%2Fblog%2F2015%2F04%2F28%2Fproject-tungsten-bringing-spark-closer-to-bare-metal.html&amp;format=xml">
+<!-- Google Analytics Tracking by Google Analyticator 6.4.9: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'disabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-44077918-1', 'auto');
+ 
+	ga('send', 'pageview');
+</script>
+<link href="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/prettify.css" type="text/css" rel="stylesheet"><style type="text/css">.fancybox-margin{margin-right:15px;}</style><style type="text/css"></style></head>
+<body class="single single-post postid-3638 single-format-standard loaded has-email-tab-component">
+  <div class="body-header">
+  <div class="body-header--topbar">
+    <div class="body-header--topbar-container container">
+      <ul class="body-header--topbar-menu nav">
+        <li class="menu-item body-header--topbar-menu--search">
+          <a href="#" data-toggle="collapse" data-target="#body-header-desktop-search-collapse" title="Search" class="body-header--topbar-menu--search-toggle collapsed">
+            <span class="db-icon-search"></span>
+            <span class="sr-only">Toggle Search</span>
+          </a>
+
+          <div id="body-header-desktop-search-collapse" class="body-header--topbar-menu--search-form collapse js-desktop-search-collapse">
+            <div class="snippet_search_form">
+<form class="form form-search" action="/" method="get">
+    <div class="form-group">
+    <label class="form-search-label" for="search-1">Search</label>
+    <input class="form-search-field form-control" name="s" id="search-1" placeholder="Search" type="text">
+  </div>
+  <button class="form-search-submit btn" type="submit">
+    <span class="form-search-submit-text">Search</span>
+  </button>
+</form>
+</div>          </div>
+        </li>
+
+        <li id="menu-item-7110" class="no-highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-7110"><a href="https://databricks.com/spark/training">Training</a></li>
+<li id="menu-item-7111" class="no-highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-7111"><a href="https://databricks.com/company/partners">Partners</a></li>
+
+        <li class="body-header--topbar-menu--btn">
+          <a href="https://accounts.cloud.databricks.com/registration.html#login" aria-label="Manage Account" data-track-button-click-event="Main Menu Manage Account CTA">Manage Account</a>
+        </li><li class="body-header--topbar-menu--btn body-header--topbar-menu--btn-primary">
+          <a href="https://databricks.com/try-databricks" aria-label="Try Databricks" data-track-button-click-event="Main Menu Signup CTA">Try Databricks</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="body-header--navbar navbar">
+    <div class="body-header--navbar-container container">
+      <div class="body-header--navbar-header">
+        <div class="body-header--navbar-header--brand">          <a href="https://databricks.com/">
+            <span class="sr-only">Databricks, Inc</span>
+          </a>
+        </div>
+        <button type="button" class="body-header--navbar-header--toggle body-header--navbar-toggle--mobile-menu js-toggle-mobile-header-menu">
+          <span class="db-icon-menu"></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+      </div>
+
+      <div class="body-header--navbar-menu js-mobile-header-menu">
+        <div class="body-header--navbar-menu--inner">
+          <div class="body-header--navbar-menu--mobile-search">
+            <div class="snippet_search_form">
+<form class="form form-search" action="/" method="get">
+    <div class="form-group">
+    <label class="form-search-label" for="search-2">Search</label>
+    <input class="form-search-field form-control" name="s" id="search-2" placeholder="Search" type="text">
+  </div>
+  <button class="form-search-submit btn" type="submit">
+    <span class="form-search-submit-text">Search</span>
+  </button>
+</form>
+</div>          </div>
+
+          <ul class="nav body-header--navbar-menu--menu body-header--navbar-menu--menu-left allow-dropdown-hover">
+            <li class="body-header--navbar-menu--btn body-header--navbar-menu--btn-primary visible-xs menu-item">
+              <a href="https://databricks.com/try-databricks" aria-label="Try Databricks" data-track-button-click-event="Main Menu Signup CTA">Try Databricks</a>
+            </li>
+            <li class="body-header--navbar-menu--btn visible-xs menu-item">
+              <a href="https://accounts.cloud.databricks.com/registration.html#login" aria-label="Manage Account" data-track-button-click-event="Main Menu Manage Account CTA">Manage Account</a>
+            </li>
+
+            <li id="menu-item-7076" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7076 dropdown"><a href="https://databricks.com/product/databricks" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Product <span class="caret"></span></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-7077" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7077"><a href="https://databricks.com/product/databricks">Databricks</a></li>
+	<li id="menu-item-8128" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8128"><a href="https://databricks.com/product/getting-started-with-apache-spark-on-databricks">How to Get Started</a></li>
+	<li id="menu-item-7079" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7079"><a href="https://databricks.com/product/pricing">Pricing</a></li>
+	<li id="menu-item-7080" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7080"><a href="https://databricks.com/product/security">Security</a></li>
+	<li id="menu-item-8178" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8178"><a href="https://docs.cloud.databricks.com/docs/latest/api/index.html">API Documentation</a></li>
+	<li id="menu-item-7078" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7078"><a href="https://databricks.com/product/faq">FAQ</a></li>
+	<li id="menu-item-4032" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4032"><a href="https://forums.databricks.com/">Forums</a></li>
+	<li id="menu-item-7081" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7081"><a href="https://databricks.com/academic">Academic Program</a></li>
+</ul>
+</li>
+<li id="menu-item-7082" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7082 dropdown"><a href="https://databricks.com/spark/about" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Apache Spark <span class="caret"></span></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-7083" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7083"><a href="https://databricks.com/spark/about">About Apache Spark</a></li>
+	<li id="menu-item-4688" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4688"><a href="http://sparkhub.databricks.com/">SparkHub (Community)</a></li>
+	<li id="menu-item-7767" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7767"><a href="https://sparkhub.databricks.com/resources/">Developer Resources</a></li>
+	<li id="menu-item-7084" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7084"><a href="https://databricks.com/spark/certification">Certification</a></li>
+	<li id="menu-item-7086" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7086"><a href="https://databricks.com/spark/training">Training</a></li>
+</ul>
+</li>
+<li id="menu-item-7087" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7087 dropdown"><a href="https://databricks.com/solutions/by-role" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Solutions <span class="caret"></span></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-7089" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7089"><a href="https://databricks.com/solutions/by-role">By Role</a></li>
+	<li id="menu-item-7088" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7088"><a href="https://databricks.com/solutions/by-industry">By Industry</a></li>
+	<li id="menu-item-7090" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7090"><a href="https://databricks.com/solutions/by-use-case">By Use Case</a></li>
+</ul>
+</li>
+<li id="menu-item-7091" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7091"><a href="https://databricks.com/customers">Customers</a></li>
+<li id="menu-item-7092" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7092 dropdown"><a href="https://databricks.com/company/about-us" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Company <span class="caret"></span></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-7093" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7093"><a href="https://databricks.com/company/about-us">About Us</a></li>
+	<li id="menu-item-7096" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7096"><a href="https://databricks.com/company/leadership-team">Leadership</a></li>
+	<li id="menu-item-7097" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7097"><a href="https://databricks.com/company/team">Team</a></li>
+	<li id="menu-item-7099" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7099"><a href="https://databricks.com/company/partners">Partners</a></li>
+	<li id="menu-item-7098" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7098"><a href="https://databricks.com/company/newsroom">Newsroom</a></li>
+	<li id="menu-item-7094" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7094"><a href="https://databricks.com/company/careers">Careers</a></li>
+	<li id="menu-item-7095" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7095"><a href="https://databricks.com/company/contact">Contact</a></li>
+</ul>
+</li>
+<li id="menu-item-7100" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-has-children menu-item-7100 dropdown current-menu-ancestor"><a href="https://databricks.com/blog" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Blog <span class="caret"></span></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-7101" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-7101"><a href="https://databricks.com/blog">See All</a></li>
+	<li id="menu-item-6963" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6963"><a href="https://databricks.com/blog/category/company">Company Blog</a></li>
+	<li id="menu-item-6964" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-6964"><a href="https://databricks.com/blog/category/engineering">Engineering Blog</a></li>
+</ul>
+</li>
+<li id="menu-item-8835" class="resource menu-item menu-item-type-resource menu-item-object-cpt_archive menu-item-8835"><a href="https://databricks.com/resources">Resources</a></li>
+          </ul>
+
+          <ul class="nav body-header--navbar-menu--menu body-header--navbar-menu--menu-right allow-dropdown-hover">
+            <li class="no-highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-7110"><a href="https://databricks.com/spark/training">Training</a></li>
+<li class="no-highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-7111"><a href="https://databricks.com/company/partners">Partners</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="body-header--mobile-navbar-overlay js-toggle-mobile-header-menu"></div>
+</div><!-- .body-header -->
+<div class="body-content">
+<div class="page-container container">
+<div class="page-section blog-page-section">
+  <div class="row">
+          <div class="col-xs-12 col-sm-3 col-md-2">
+        <div class="blog-sidebar blog-sidebar--menu">
+  <div class="blog-sidebar--section blog-sidebar--menu--section-search hidden-xs">
+    <div class="snippet_search_form">
+<form class="form form-search" action="/" method="get">
+    <div class="form-group">
+    <label class="form-search-label" for="search-3">Search</label>
+    <input class="form-search-field form-control" name="s" id="search-3" placeholder="Search Blog" type="text">
+  </div>
+  <button class="form-search-submit btn" type="submit">
+    <span class="form-search-submit-text">Search</span>
+  </button>
+</form>
+</div>  </div>
+
+      <div class="blog-sidebar--section blog-sidebar--menu--section-navigation">
+      <div class="blog-sidebar--menu--section-navigation--collapse collapse collapse-simple" id="blog-sidebar--menu-navigation-collapse" aria-expanded="false" style="height:0">
+        <div class="blog-sidebar--menu--section-navigation--collapse--inner">
+          <ul id="menu-blog-menu-1" class="blog-sidebar--menu--section-navigation--menu"><li class="company menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-6951"><a href="https://databricks.com/blog/category/company">Company <span class="hidden-xs">Blog</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-6952" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6952"><a href="https://databricks.com/blog/category/company/announcements">Announcements</a></li>
+	<li id="menu-item-6953" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6953"><a href="https://databricks.com/blog/category/company/customers">Customers</a></li>
+	<li id="menu-item-6954" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6954"><a href="https://databricks.com/blog/category/company/events">Events</a></li>
+	<li id="menu-item-6955" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6955"><a href="https://databricks.com/blog/category/company/partners">Partners</a></li>
+	<li id="menu-item-6956" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6956"><a href="https://databricks.com/blog/category/company/product">Product</a></li>
+</ul>
+</li>
+<li class="engineering menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-6957"><a href="https://databricks.com/blog/category/engineering">Engineering <span class="hidden-xs">Blog</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-6958" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6958"><a href="https://databricks.com/blog/category/engineering/ecosystem">Ecosystem</a></li>
+	<li id="menu-item-6959" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6959"><a href="https://databricks.com/blog/category/engineering/machine-learning">Machine Learning</a></li>
+	<li id="menu-item-6960" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-6960"><a href="https://databricks.com/blog/category/engineering/spark">Apache Spark</a></li>
+	<li id="menu-item-6961" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6961"><a href="https://databricks.com/blog/category/engineering/streaming">Streaming</a></li>
+</ul>
+</li>
+<li class="menu-item"><a href="https://databricks.com/blog"><span class="hidden-xs">See </span>All</a></li></ul>
+          <a class="blog-sidebar--menu--section-navigation--collapse--twitter-icon visible-xs" href="https://twitter.com/databricks" target="_blank">
+            <span class="db-icon-twitter"></span>
+          </a>
+        </div>
+      </div>
+      <a class="blog-sidebar--menu--section-navigation--collapse-toggle collapsed visible-xs" role="button" data-toggle="collapse" href="#blog-sidebar--menu-navigation-collapse">
+        <span class="blog-sidebar--menu--section-navigation--collapse-toggle--bar"></span>
+        <span class="blog-sidebar--menu--section-navigation--collapse-toggle--bar"></span>
+        <span class="blog-sidebar--menu--section-navigation--collapse-toggle--bar"></span>
+        <span class="sr-only">Collapse</span>
+      </a>
+    </div>
+  
+  <div class="blog-sidebar--section blog-sidebar--menu--section-subscribe hidden-xs">
+    <h4 class="blog-sidebar--section--title">Subscribe</h4>
+
+    <ul class="blog-sidebar--menu--section-subscribe--links">
+      <li>
+        <a class="blog-sidebar--menu--section-subscribe--links--link" href="https://databricks.com/feed" title="Databricks Blog RSS feed" target="_blank">
+          <span class="blog-sidebar--menu--section-subscribe--links--link--icon db-icon-rss"></span>
+          <span class="blog-sidebar--menu--section-subscribe--links--link--label">Blog</span>
+        </a>
+      </li>
+      <li>
+        <a class="blog-sidebar--menu--section-subscribe--links--link" href="http://go.databricks.com/newsletter-registration" title="Databricks Newsletter" target="_blank">
+          <span class="blog-sidebar--menu--section-subscribe--links--link--icon db-icon-newsletter"></span>
+          <span class="blog-sidebar--menu--section-subscribe--links--link--label">Newsletter</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-sidebar--section blog-sidebar--menu--section-follow hidden-xs">
+    <h4 class="blog-sidebar--section--title">Follow</h4>
+
+    <ul class="blog-sidebar--menu--section-follow--links navbar-share">
+      <li>
+        <a class="blog-sidebar--menu--section-follow--links--link" href="https://twitter.com/databricks" target="_blank">
+          <span class="db-icon-twitter blog-sidebar--menu--section-follow--links--link--icon"></span>
+          <span class="sr-only">Databricks Twitter profile</span>
+        </a>
+      </li>
+      <li>
+        <a class="blog-sidebar--menu--section-follow--links--link" href="https://www.linkedin.com/company/databricks" target="_blank">
+          <span class="db-icon-linkedin blog-sidebar--menu--section-follow--links--link--icon"></span>
+          <span class="sr-only">Databricks LinkedIn profile</span>
+        </a>
+      </li>
+      <li>
+        <a class="blog-sidebar--menu--section-follow--links--link" href="https://www.facebook.com/pages/Databricks/560203607379694" target="_blank">
+          <span class="db-icon-facebook blog-sidebar--menu--section-follow--links--link--icon"></span>
+          <span class="sr-only">Databricks Facebook profile</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+      </div>
+    
+    <div class="col-xs-12 col-sm-9 col-md-7">
+      <div class="blog-content">
+                <div class="blog-post blog-post-single blog-post-category-engineering">
+  <header class="blog-post--header">
+          <h1 class="blog-post--header--title">Project Tungsten: Bringing Apache Spark Closer to Bare Metal</h1>
+          
+    <div class="blog-post--header--meta">
+                        <span class="blog-post--header--meta--item blog-post--header--meta--item-date visible-xs-inline">
+            <a href="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html"><time datetime="2015-04-28T07:15:35+00:00">April 28, 2015</time></a>
+          </span>
+          <span class="blog-post--header--meta--item blog-post--header--meta--item-author-avatars hidden-xs">
+                        <a href="https://databricks.com/blog/author/rxin" class="blog-post--header--meta--item-author-avatars--avatar"><img src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/reynoldx-128x128.jpg" alt="Reynold Xin" class="avatar avatar-100 wp-user-avatar wp-user-avatar-100 alignnone photo" height="100" width="100"></a><a href="https://databricks.com/blog/author/josh-rosen" class="blog-post--header--meta--item-author-avatars--avatar"><img src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/joshR-150x150.jpg" alt="Josh Rosen" height="50" width="50"></a>          </span>
+          <span class="blog-post--header--meta--item blog-post--header--meta--item-authors">by <a href="https://databricks.com/blog/author/rxin" title="Posts by Reynold Xin" class="author url fn" rel="author">Reynold Xin</a> and <a href="https://databricks.com/blog/author/josh-rosen" title="Posts by Josh Rosen" class="author url fn" rel="author">Josh Rosen</a></span>
+                      <span class="blog-post--header--meta--item blog-post--header--meta--item-category"><span class="hidden-xs">Posted</span> in <a href="https://databricks.com/blog/category/engineering">Engineering Blog</a></span>
+                    <span class="blog-post--header--meta--item blog-post--header--meta--item-date hidden-xs">
+            <a href="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html"><time datetime="2015-04-28T07:15:35+00:00">April 28, 2015</time></a>
+          </span>
+                  </div>
+
+          <div class="blog-post--header--share hidden-md hidden-lg">
+          <ul class="navbar-share">
+    <li>
+      <a href="https://twitter.com/home?status=https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html" class="twitter" target="_blank">
+        <span class="db-icon-twitter"></span>
+        <span class="sr-only">Share article on Twitter</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html&amp;title=Project%20Tungsten:%20Bringing%20Apache%20Spark%20Closer%20to%20Bare%20Metal&amp;summary=&amp;source=" class="linkedin" target="_blank">
+        <span class="db-icon-linkedin"></span>
+        <span class="sr-only">Share article on LinkedIn</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html" class="facebook" target="_blank">
+        <span class="db-icon-facebook"></span>
+        <span class="sr-only">Share article on Facebook</span>
+      </a>
+    </li>
+  </ul>
+        </div>
+      </header>
+
+      <article class="blog-post--section blog-post--article l-formatted">
+      <p>In a previous <a href="https://databricks.com/blog/2015/04/24/recent-performance-improvements-in-apache-spark-sql-python-dataframes-and-more.html">blog post</a>,
+ we looked back and surveyed performance improvements made to Apache 
+Spark in the past year. In this post, we look forward and share with you
+ the next chapter, which we are calling <i>Project Tungsten. </i>2014 
+witnessed Spark setting the world record in large-scale sorting and saw 
+major improvements across the entire engine from Python to SQL to 
+machine learning. Performance optimization, however, is a never ending 
+process.</p>
+<p>Project Tungsten will be the largest change to Spark’s execution 
+engine since the project’s inception. It focuses on substantially 
+improving the efficiency of <i>memory and CPU</i> for Spark applications, to push performance closer to the limits of modern hardware. This effort includes three initiatives:</p>
+<ol>
+<li><i>Memory Management and Binary Processing:</i> leveraging 
+application semantics to manage memory explicitly and eliminate the 
+overhead of JVM object model and garbage collection</li>
+<li><i>Cache-aware computation</i>: algorithms and data structures to exploit memory hierarchy</li>
+<li><i>Code generation</i>: using code generation to exploit modern compilers and CPUs</li>
+</ol>
+<p>The focus on CPU efficiency is motivated by the fact that Spark 
+workloads are increasingly bottlenecked by CPU and memory use rather 
+than IO and network communication. This trend is shown by recent 
+research on the performance of big data workloads (<a href="https://kayousterhout.github.io/trace-analysis/">Ousterhout et al</a>) and we’ve arrived at similar findings as part of our ongoing tuning and optimization efforts for <a href="https://databricks.com/product/databricks-cloud">Databricks Cloud</a> customers.</p>
+<p>Why is CPU the new bottleneck? There are many reasons for this. One 
+is that hardware configurations offer increasingly large aggregate IO 
+bandwidth, such as 10Gbps links in networks and high bandwidth SSD’s or 
+striped HDD arrays for storage. From a software perspective, Spark’s 
+optimizer now allows many workloads to avoid significant disk IO by 
+pruning input data that is not needed in a given job. In Spark’s shuffle
+ subsystem, serialization and hashing (which are CPU bound) have been 
+shown to be key bottlenecks, rather than raw network throughput of 
+underlying hardware. All these trends mean that Spark today is often 
+constrained by CPU efficiency and memory pressure rather than IO.</p>
+<h2>1. Memory Management and Binary Processing</h2>
+<p>Applications on the JVM typically rely on the JVM’s garbage collector
+ to manage memory. The JVM is an impressive engineering feat, designed 
+as a general runtime for many workloads. However, as Spark applications 
+push the boundary of performance, the overhead of JVM objects and GC 
+becomes non-negligible.</p>
+<p>Java objects have a large inherent memory overhead. Consider a simple
+ string “abcd” that would take 4 bytes to store using UTF-8 encoding. 
+JVM’s native String implementation, however, stores this differently to 
+facilitate more common workloads. It encodes each character using 2 
+bytes with UTF-16 encoding, and each String object also contains a 12 
+byte header and 8 byte hash code, as illustrated by the following output
+ from the the <a href="http://openjdk.java.net/projects/code-tools/jol/">Java Object Layout</a> tool.</p>
+<pre style="" class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><span class="pln">java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">String</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> internals</span><span class="pun">:</span></li><li class="L1"><span class="pln">OFFSET &nbsp;SIZE &nbsp;&nbsp;TYPE DESCRIPTION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">0</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> header</span><span class="pun">)</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">...</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> header</span><span class="pun">)</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">...</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">8</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">(</span><span class="kwd">object</span><span class="pln"> header</span><span class="pun">)</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">...</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">12</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[]</span><span class="pln"> </span><span class="typ">String</span><span class="pun">.</span><span class="pln">value &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">[]</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">16</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> &nbsp;&nbsp;&nbsp;</span><span class="kwd">int</span><span class="pln"> </span><span class="typ">String</span><span class="pun">.</span><span class="pln">hash &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">0</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">20</span><span class="pln"> &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">4</span><span class="pln"> &nbsp;&nbsp;&nbsp;</span><span class="kwd">int</span><span class="pln"> </span><span class="typ">String</span><span class="pun">.</span><span class="pln">hash32 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">0</span></li><li class="L8"><span class="typ">Instance</span><span class="pln"> size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">24</span><span class="pln"> bytes </span><span class="pun">(</span><span class="pln">reported </span><span class="kwd">by</span><span class="pln"> </span><span class="typ">Instrumentation</span><span class="pln"> API</span><span class="pun">)</span></li></ol></pre>
+<p>A simple 4 byte string becomes over 48 bytes in total in the JVM object model!</p>
+<p>The other problem with the JVM object model is the overhead of 
+garbage collection. At a high level, generational garbage collection 
+divides objects into two categories: ones that have a high rate of 
+allocation/deallocation (the young generation) ones that are kept around
+ (the old generation). Garbage collectors exploit the transient nature 
+of young generation objects to manage them efficiently. This works well 
+when GC can reliably estimate the life cycle of objects, but falls short
+ if the estimation is off (i.e. some transient objects spill into the 
+old generation). Since this approach is ultimately based on heuristics 
+and estimation, eeking out performance can require the “black magic” of 
+GC tuning, with <a href="http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html">dozens of parameters</a> to give the JVM more information about the life cycle of objects.</p>
+<p>Spark, however, is not just a general-purpose application. Spark 
+understands how data flows through various stages of computation and the
+ scope of jobs and tasks. As a result, Spark knows much more information
+ than the JVM garbage collector about the life cycle of memory blocks, 
+and thus should be able to manage memory more efficiently than the JVM.</p>
+<p>To tackle both object overhead and GC’s inefficiency, we are 
+introducing an explicit memory manager to convert most Spark operations 
+to operate directly against binary data rather than Java objects. This 
+builds on <code>sun.misc.Unsafe</code>, an advanced functionality 
+provided by the JVM that exposes C-style memory access (e.g. explicit 
+allocation, deallocation, pointer arithmetics). Furthermore, Unsafe 
+methods are <i>intrinsic</i>, meaning each method call is compiled by JIT into a single machine instruction.</p>
+<p>In certain areas, Spark has already started using explicitly managed 
+memory. Last year, Databricks contributed a new Netty-based network 
+transport that explicitly manages all network buffers using a jemalloc 
+like memory manager. That was critical in scaling up Spark’s shuffle 
+operation and winning the Sort Benchmark.</p>
+<p>The first pieces of this will appear in Spark 1.4, which includes a 
+hash table that operates directly against binary data with memory 
+explicitly managed by Spark. Compared with the standard Java <code>HashMap</code>, this new implementation much less indirection overhead and is invisible to the garbage collector.</p>
+<p><img class=" wp-image-3639 aligncenter" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/Screen-Shot-2015-04-27-at-6_002.png" alt="Screen Shot 2015-04-27 at 6.08.39 PM" height="534" width="800"></p>
+<p>This is still work-in-progress, but initial performance results are 
+encouraging. As shown above, we compare the throughput of aggregation 
+operations using different hash map: one with our new hash map’s heap 
+mode, one with offheap, and one with java.util.HashMap. The new hash 
+table supports over 1 million aggregation operations per second in a 
+single thread, about 2X the throughput of java.util.HashMap. More 
+importantly, without tuning any parameters, it has almost no performance
+ degradation as memory utilization increases, while the JVM default one 
+eventually thrashes due to GC.</p>
+<p>In Spark 1.4, this hash map will be used for aggregations for 
+DataFrames and SQL, and in 1.5 we will have data structures ready for 
+most other operations, such as sorting and joins. This will in many 
+cases eliminating the need to tune GC to achieve high performance.</p>
+<h2>2. Cache-aware Computation</h2>
+<p>Before we explain cache-aware computation, let’s revisit “in-memory” 
+computation. Spark is widely known as an in-memory computation engine. 
+What that term really means is that Spark can leverage the memory 
+resources on a cluster efficiently, processing data at a rate much 
+higher than disk-based solutions. However, Spark can also process data 
+orders magnitude larger than the available memory, transparently spill 
+to disk and perform external operations such as sorting and hashing.</p>
+<p>Similarly, cache-aware computation improves the speed of data 
+processing through more effective use of L1/ L2/L3 CPU caches, as they 
+are orders of magnitude faster than main memory. When profiling Spark 
+user applications, we’ve found that a large fraction of the CPU time is 
+spent waiting for data to be fetched from main memory. As part of 
+Project Tungsten, we are designing cache-friendly algorithms and data 
+structures so Spark applications will spend less time waiting to fetch 
+data from memory and more time doing useful work.</p>
+<p>Consider sorting of records as an example. A standard sorting 
+procedure would store an array of pointers to records and use quicksort 
+to swap pointers until all records are sorted. Sorting in general has 
+good cache hit rate due to the sequential scan access pattern. Sorting a
+ list of pointers, however, has a poor cache hit rate because each 
+comparison operation requires dereferencing two pointers that point to 
+randomly located records in memory.</p>
+<p><img class="aligncenter wp-image-3640" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/Screen-Shot-2015-04-27-at-6.png" alt="" height="249" width="400"></p>
+<p>So how do we improve the cache locality of sorting? A very simple 
+approach is to store the sort key of each record side by side with the 
+pointer. For example, if the sort key is a 64-bit integer, then we use 
+128-bit (64-bit pointer and 64-bit key) to store each record in the 
+pointers array. This way, each quicksort comparison operation only looks
+ up the pointer-key pairs in a linear fashion and requires no random 
+memory lookup. Hopefully the above illustration gives you some idea 
+about how we can redesign basic operations to achieve higher cache 
+locality.</p>
+<p>How does this apply to Spark? Most distributed data processing can be
+ boiled down to a small list of operations such as aggregations, 
+sorting, and join. By improving the efficiency of these operations, we 
+can improve the efficiency of Spark applications as a whole. We have 
+already built a version of sort that is cache-aware that is 3X faster 
+than the previous version. This new sort will be used in sort-based 
+shuffle, high cardinality aggregations, and sort-merge join operator. By
+ the end of this year, most Spark’s lowest level algorithms will be 
+upgraded to be cache-aware, increasing the efficiency of all 
+applications from machine learning to SQL.</p>
+<h2>3. Code Generation</h2>
+<p>About a year ago Spark introduced <a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html">code generation for expression evaluation</a> in SQL and DataFrames. Expression evaluation is the process of computing the value of an expression (say “<code>age &gt; 35 &amp;&amp; age &lt; 40</code>”)
+ on a particular record. At runtime, Spark dynamically generates 
+bytecode for evaluating these expressions, rather than stepping through a
+ slower interpreter for each row. Compared with interpretation, code 
+generation reduces the boxing of primitive data types and, more 
+importantly, avoids expensive <a href="http://shipilev.net/blog/2015/black-magic-method-dispatch/">polymorphic function dispatches</a>.</p>
+<p>In an <a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html">earlier blog post</a>,
+ we demonstrated that code generation could speed up many TPC-DS queries
+ by almost an order of magnitude. We are now broadening the code 
+generation coverage to most built-in expressions. In addition, we plan 
+to increase the level of code generation from <i>record-at-a-time</i> expression evaluation to <i>vectorized</i>
+ expression evaluation, leveraging JIT’s capabilities to exploit better 
+instruction pipelining in modern CPUs so we can process multiple records
+ at once.</p>
+<p>We’re also applying code generation in areas beyond expression 
+evaluations to optimize the CPU efficiency of internal components. One 
+area that we are very excited about applying code generation is to speed
+ up the conversion of data from in-memory binary format to wire-protocol
+ for shuffle. As mentioned earlier, shuffle is often bottlenecked by 
+data serialization rather than the underlying network. With code 
+generation, we can increase the throughput of serialization, and in turn
+ increase shuffle network throughput.</p>
+<p><img class=" wp-image-3641 aligncenter" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/Screen-Shot-2015-04-27-at-6_003.png" alt="" width="400"></p>
+<p>The above chart compares the performance of shuffling 8 million 
+complex rows in one thread using the Kryo serializer and a code 
+generated custom serializer. The code generated serializer exploits the 
+fact that all rows in a single shuffle have the same schema and 
+generates specialized code for that. This made the generated version 
+over 2X faster to shuffle than the Kryo version.</p>
+<h2>Tungsten and Beyond</h2>
+<p>Project Tungsten is a broad initiative that will influence the design
+ of Spark’s core engine over the next several releases. The first pieces
+ will land in Spark 1.4, which includes explicitly managed memory for <a href="https://github.com/apache/spark/pull/5725">aggregation operations</a> in Spark’s DataFrame API as well as <a href="https://github.com/apache/spark/pull/5497">customized serializers</a>.
+ Expanded coverage of binary memory management and cache-aware data 
+structures will appear in Spark 1.5. Several parts of project Tungsten 
+leverage the DataFrame model. We will also retrofit the improvements 
+onto Spark’s RDD API whenever possible.</p>
+<p>There are also a handful of longer term possibilities for Tungsten. 
+In particular, we plan to investigate compilation to LLVM or OpenCL, so 
+Spark applications can leverage SSE/SIMD instructions out of modern CPUs
+ and the wide parallelism in GPUs to speed up operations in machine 
+learning and graph computation.</p>
+<p>The goal of Spark has always been to offer a single platform where 
+users can get the best distributed algorithms for any data processing 
+task. Performance is a key part of that goal, and Project Tungsten aims 
+to let Spark applications run at the speed offered by bare metal. Stay 
+tuned for the Databricks blog for longer term articles on the components
+ of Project Tungsten as they ship. We’ll also be reporting details about
+ the project at the upcoming <a href="http://spark-summit.org/2015">Spark Summit in San Francisco in June</a>.</p>
+<p>* Note: hand-drawing diagrams inspired by our friends at Confluent (Martin Kleppmann)</p>
+<p class="blog-post--bug"><img src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/Databricks-logo-bug.png" alt="Databricks Blog" height="16" width="15"></p>    <div class="blog-post--cta blog-post--cta-free-trial">
+      <span class="blog-post--cta-free-trial--label">Try Databricks for free.</span>
+      <a href="https://databricks.com/try-databricks" class="btn h-btn-color-blue h-btn-size-sm blog-post--cta-free-trial--btn" data-track-button-click-event="Blog Post Signup CTA">Get started Today</a>    </div>
+        </article>
+
+            <div class="blog-post--section blog-post--related">
+          <h3 class="blog-post--section--title">Read More</h3>
+          <div class="row"><div class=" col-xs-12 col-md-4"><div class="col-inner">              <a class="blog-post--related--related-post" href="https://databricks.com/blog/2016/03/22/apache-spark-trending-in-the-stack-overflow-survey.html" data-track-event-category="Related Blog Post" data-track-event-action="click" data-track-event-label="Apache Spark Trending in the Stack Overflow Survey">
+                <h4 class="blog-post--related--related-post--title">
+                  Apache Spark Trending in the Stack Overflow Survey                </h4>
+                <p class="blog-post--related--related-post--excerpt">
+                  Last week, Stack Overflow released the result of their
+ 2016 developer survey. This is one of the most significant surveys in 
+the field with responses...                </p>
+              </a>
+
+              </div></div><div class=" col-xs-12 col-md-4"><div class="col-inner">              <a class="blog-post--related--related-post" href="https://databricks.com/blog/2016/03/03/introducing-graphframes.html" data-track-event-category="Related Blog Post" data-track-event-action="click" data-track-event-label="Introducing GraphFrames">
+                <h4 class="blog-post--related--related-post--title">
+                  Introducing GraphFrames                </h4>
+                <p class="blog-post--related--related-post--excerpt">
+                  We would like to thank Ankur Dave from&nbsp;UC 
+Berkeley AMPLab for his contribution to this blog post. Databricks is 
+excited to announce the release of...                </p>
+              </a>
+
+              </div></div><div class=" col-xs-12 col-md-4"><div class="col-inner">              <a class="blog-post--related--related-post" href="https://databricks.com/blog/2016/02/09/reshaping-data-with-pivot-in-apache-spark.html" data-track-event-category="Related Blog Post" data-track-event-action="click" data-track-event-label="Reshaping Data with Pivot in Apache Spark">
+                <h4 class="blog-post--related--related-post--title">
+                  Reshaping Data with Pivot in Apache Spark                </h4>
+                <p class="blog-post--related--related-post--excerpt">
+                  Spark Summit East is just around the corner! If you 
+haven’t registered yet, you can get tickets&nbsp;here and here’s a promo
+ code for 20% off:...                </p>
+              </a>
+
+              </div></div></div>        </div>
+      </div>
+          <div class="blog-content--footer">
+                          <a href="https://databricks.com/blog/category/engineering" class="btn h-btn-color-gray">See all Engineering Blog posts</a>                      </div>
+                </div>
+    </div>
+
+          <div class="col-md-3 hidden-xs hidden-sm">
+        <div class="blog-sidebar blog-sidebar--widgets">
+      <div class="blog-sidebar--section blog-sidebar--widgets--section blog-sidebar--widgets--section-share">
+      <h4 class="blog-sidebar--section--title">Share Post</h4>
+
+        <ul class="navbar-share">
+    <li>
+      <a href="https://twitter.com/home?status=https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html" class="twitter" target="_blank">
+        <span class="db-icon-twitter"></span>
+        <span class="sr-only">Share article on Twitter</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html&amp;title=Project%20Tungsten:%20Bringing%20Apache%20Spark%20Closer%20to%20Bare%20Metal&amp;summary=&amp;source=" class="linkedin" target="_blank">
+        <span class="db-icon-linkedin"></span>
+        <span class="sr-only">Share article on LinkedIn</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html" class="facebook" target="_blank">
+        <span class="db-icon-facebook"></span>
+        <span class="sr-only">Share article on Facebook</span>
+      </a>
+    </li>
+  </ul>
+      </div>
+
+        <div id="text-8" class="blog-sidebar--section blog-sidebar--widgets--section">			<div class="textwidget"><a href="http://go.databricks.com/large-scale-machine-learning-deployments-spark-databricks" data-track-event-category="Banners" data-track-event-action="Clicked" data-track-event-label="Blog Sidebar Banner" target="_blank"><img src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/Book3-Blog-ad.png" alt="Get the Lessons for large-scale machine learning deployments on Databricks eBook" height="263" width="263"></a></div>
+		</div><div id="text-9" class="blog-sidebar--section blog-sidebar--widgets--section"><h4 class="blog-sidebar--section--title">Simplify Machine Learning with Apache&nbsp;Spark</h4>			<div class="textwidget"><ul class="list-unstyled">
+<li><a href="http://go.databricks.com/industry-perspectives-deliver-the-power-of-machine-learning?utm_source=Databricks%20Blog&amp;utm_medium=link&amp;utm_campaign=Machine%20Learning&amp;utm_content=dinsmore" target="_blank">Read the White Paper</a></li>
+<li><a href="http://go.databricks.com/machine-learning-starterkit?utm_source=Databricks%20Blog&amp;utm_medium=link&amp;utm_campaign=Machine%20Learning&amp;utm_content=ml_starterkit" target="_blank">Download our Machine Learning Starter Kit</a></li>
+</ul></div>
+		</div><div id="text-10" class="blog-sidebar--section blog-sidebar--widgets--section"><h4 class="blog-sidebar--section--title">Upcoming Webinars</h4>			<div class="textwidget"><ul class="list-unstyled">
+<li><a href="http://go.databricks.com/webinar-how-omega-point-builds-more-profitable-investment-portfolios-with-databricks" target="_blank">Aug 18: How Omega Point Helps Investors Optimize their Portfolios with Apache® Spark™ on Databricks</a></li>
+</ul></div>
+		</div></div>
+      </div>
+      </div>
+</div>
+</div></div><!-- .body-content -->
+
+<div class="body-footer container">
+  <div class="footer-inner">
+    <div class="row">
+      <div class="col-sm-3 col_widget_nav_menu"><div class="col-inner"><div id="nav_menu-2" class="widget widget_nav_menu"><div class="menu-site-menu-container"><ul id="menu-site-menu-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7076"><a href="https://databricks.com/product">Product</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7077"><a href="https://databricks.com/product/databricks">Databricks</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8128"><a href="https://databricks.com/product/getting-started-with-apache-spark-on-databricks">How to Get Started</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7079"><a href="https://databricks.com/product/pricing">Pricing</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7080"><a href="https://databricks.com/product/security">Security</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8178"><a href="https://docs.cloud.databricks.com/docs/latest/api/index.html">API Documentation</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7078"><a href="https://databricks.com/product/faq">FAQ</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4032"><a href="https://forums.databricks.com/">Forums</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7081"><a href="https://databricks.com/academic">Academic Program</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7082"><a href="https://databricks.com/spark">Apache Spark</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7083"><a href="https://databricks.com/spark/about">About Apache Spark</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4688"><a href="http://sparkhub.databricks.com/">SparkHub (Community)</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7767"><a href="https://sparkhub.databricks.com/resources/">Developer Resources</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7084"><a href="https://databricks.com/spark/certification">Certification</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7086"><a href="https://databricks.com/spark/training">Training</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7087"><a href="https://databricks.com/solutions">Solutions</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7089"><a href="https://databricks.com/solutions/by-role">By Role</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7088"><a href="https://databricks.com/solutions/by-industry">By Industry</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7090"><a href="https://databricks.com/solutions/by-use-case">By Use Case</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7091"><a href="https://databricks.com/customers">Customers</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7092"><a href="https://databricks.com/company">Company</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7093"><a href="https://databricks.com/company/about-us">About Us</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7096"><a href="https://databricks.com/company/leadership-team">Leadership</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7097"><a href="https://databricks.com/company/team">Team</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7099"><a href="https://databricks.com/company/partners">Partners</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7098"><a href="https://databricks.com/company/newsroom">Newsroom</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7094"><a href="https://databricks.com/company/careers">Careers</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7095"><a href="https://databricks.com/company/contact">Contact</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-has-children menu-item-7100"><a href="https://databricks.com/blog">Blog</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-7101"><a href="https://databricks.com/blog">See All</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6963"><a href="https://databricks.com/blog/category/company">Company Blog</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-6964"><a href="https://databricks.com/blog/category/engineering">Engineering Blog</a></li>
+</ul>
+</li>
+<li class="resource menu-item menu-item-type-resource menu-item-object-cpt_archive menu-item-8835"><a href="https://databricks.com/resources">Resources</a></li>
+</ul></div></div></div></div><div class="col-sm-3 col_widget_text"><div class="col-inner"><div id="text-3" class="widget widget_text">			<div class="textwidget"><p>Databricks Inc.<br>
+160 Spear Street, 13th Floor<br>
+San Francisco, CA 94105</p>
+<p><a href="mailto:info@databricks.com">info@databricks.com</a><br>
+1-866-330-0121</p>
+</div>
+		</div></div></div>    </div>
+    <div class="footer-copyright">
+      <div class="row row-rtl">
+        <div class="col-sm-3">
+          <div class="col-inner">
+            <ul class="company-social-links navbar-share">
+              <li>
+                <a href="https://twitter.com/databricks" target="_blank">
+                  <span class="db-icon-twitter"></span>
+                  <span class="sr-only">Databricks Twitter profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/databricks" target="_blank">
+                  <span class="db-icon-linkedin"></span>
+                  <span class="sr-only">Databricks LinkedIn profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/pages/Databricks/560203607379694" target="_blank">
+                  <span class="db-icon-facebook"></span>
+                  <span class="sr-only">Databricks Facebook profile</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://databricks.com/feed" target="_blank">
+                  <span class="db-icon-rss"></span>
+                  <span class="sr-only">Databricks Blog RSS feed</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <div class="col-inner">
+            <p id="copyright" class="copyright-text">© Databricks 2016. All rights reserved. Apache, Apache Spark, Spark and the Spark logo are trademarks of the <a href="http://www.apache.org/">Apache Software Foundation</a>.<br><a href="https://databricks.com/privacy-policy">Privacy Policy</a> | <a href="https://databricks.com/terms-of-use">Terms of Use</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/jquery.js"></script>
+<script type="text/javascript" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/vendor.js"></script>
+<script type="text/javascript" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/main.js"></script>
+
+<script type="text/javascript" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/wp-embed.js"></script>
+<script type="text/javascript" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/external-tracking.js"></script>
+<div id="su-footer-links" style="text-align: center;"></div>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWTKQQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TWTKQQ');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"cc545fdb66","applicationID":"6839999","transactionName":"NgdbNxRUDBFYVxBYWA9NeAASXA0MFl0KVVIZ","queueTime":0,"applicationTime":680,"atts":"GkBYQVxOHx8=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+<div id="email-box-197" class="email-tab ready">
+      <div class="email-tab-header"><button class="email-tab-toggle js-email-tab-toggle">Stay up to date on Apache Spark.</button><button class="email-tab-close js-email-tab-close">
+          <span class="sr-only">Close</span>
+          <span class="email-tab-close-label">×</span>
+        </button></div>
+      <div style="height: 159px;" class="email-tab-body js-email-tab-body">
+        <p>Get the latest Apache Spark news delivered right to your inbox.</p>
+        <div class="email-tab-form js-email-tab-form"><form novalidate="" accept-charset="UTF-8" action="https://forms.hubspot.com/uploads/form/v2/438089/231f17cf-5711-4165-9046-952cc5e0d138" enctype="multipart/form-data" id="hsForm_231f17cf-5711-4165-9046-952cc5e0d138" method="POST" class="hs-form stacked" data-form-id="231f17cf-5711-4165-9046-952cc5e0d138" data-portal-id="438089" data-reactid=".hbspt-forms-0"><fieldset class="form-columns-1" data-reactid=".hbspt-forms-0.0:$0"><div class="hs_email field hs-form-field" data-reactid=".hbspt-forms-0.0:$0.1:$email"><label class="" placeholder="Enter your " for="email-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$0.1:$email.0"><span data-reactid=".hbspt-forms-0.0:$0.1:$email.0.0"></span><span class="hs-form-required" data-reactid=".hbspt-forms-0.0:$0.1:$email.0.1">*</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$0.1:$email.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$0.1:$email.$email"><input id="email-231f17cf-5711-4165-9046-952cc5e0d138" class="hs-input" name="email" required="" placeholder="email" value="omidm@stanford.edu" data-reactid=".hbspt-forms-0.0:$0.1:$email.$email.0" type="email"></div></div></fieldset><fieldset class="form-columns-3" data-reactid=".hbspt-forms-0.0:$1"><div class="hs_company_demandbase field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$1.1:$company_demandbase"><label class="" placeholder="Enter your Company - Demandbase" for="company_demandbase-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$1.1:$company_demandbase.0"><span data-reactid=".hbspt-forms-0.0:$1.1:$company_demandbase.0.0">Company - Demandbase</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$1.1:$company_demandbase.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$1.1:$company_demandbase.$company_demandbase"><input name="company_demandbase" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$1.1:$company_demandbase.$company_demandbase.0" type="hidden"></div></div><div class="hs_data_source field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$1.1:$data_source"><label class="" placeholder="Enter your Data Source" for="data_source-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$1.1:$data_source.0"><span data-reactid=".hbspt-forms-0.0:$1.1:$data_source.0.0">Data Source</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$1.1:$data_source.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$1.1:$data_source.$data_source"><input name="data_source" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$1.1:$data_source.$data_source.0" type="hidden"></div></div><div class="hs_demandbase_sid field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$1.1:$demandbase_sid"><label class="" placeholder="Enter your Demandbase SID" for="demandbase_sid-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$1.1:$demandbase_sid.0"><span data-reactid=".hbspt-forms-0.0:$1.1:$demandbase_sid.0.0">Demandbase SID</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$1.1:$demandbase_sid.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$1.1:$demandbase_sid.$demandbase_sid"><input name="demandbase_sid" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$1.1:$demandbase_sid.$demandbase_sid.0" type="hidden"></div></div></fieldset><fieldset class="form-columns-3" data-reactid=".hbspt-forms-0.0:$2"><div class="hs_employee_range field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$2.1:$employee_range"><label class="" placeholder="Enter your Employee Range" for="employee_range-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$2.1:$employee_range.0"><span data-reactid=".hbspt-forms-0.0:$2.1:$employee_range.0.0">Employee Range</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$2.1:$employee_range.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$2.1:$employee_range.$employee_range"><input name="employee_range" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$2.1:$employee_range.$employee_range.0" type="hidden"></div></div><div class="hs_forbes_2000 field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$2.1:$forbes_2000"><label class="" placeholder="Enter your Forbes 2000" for="forbes_2000-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$2.1:$forbes_2000.0"><span data-reactid=".hbspt-forms-0.0:$2.1:$forbes_2000.0.0">Forbes 2000</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$2.1:$forbes_2000.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$2.1:$forbes_2000.$forbes_2000"><input name="forbes_2000" class="hs-input" value="false" data-reactid=".hbspt-forms-0.0:$2.1:$forbes_2000.$forbes_2000.0" type="hidden"></div></div><div class="hs_foreignstate field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$2.1:$foreignstate"><label class="" placeholder="Enter your FOREIGNSTATE" for="foreignstate-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$2.1:$foreignstate.0"><span data-reactid=".hbspt-forms-0.0:$2.1:$foreignstate.0.0">FOREIGNSTATE</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$2.1:$foreignstate.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$2.1:$foreignstate.$foreignstate"><input name="foreignstate" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$2.1:$foreignstate.$foreignstate.0" type="hidden"></div></div></fieldset><fieldset class="form-columns-3" data-reactid=".hbspt-forms-0.0:$3"><div class="hs_fortune_1000 field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$3.1:$fortune_1000"><label class="" placeholder="Enter your Fortune 1000" for="fortune_1000-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$3.1:$fortune_1000.0"><span data-reactid=".hbspt-forms-0.0:$3.1:$fortune_1000.0.0">Fortune 1000</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$3.1:$fortune_1000.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$3.1:$fortune_1000.$fortune_1000"><input name="fortune_1000" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$3.1:$fortune_1000.$fortune_1000.0" type="hidden"></div></div><div class="hs_main_phone_demandbase field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$3.1:$main_phone_demandbase"><label class="" placeholder="Enter your Phone - Demandbase" for="main_phone_demandbase-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$3.1:$main_phone_demandbase.0"><span data-reactid=".hbspt-forms-0.0:$3.1:$main_phone_demandbase.0.0">Phone - Demandbase</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$3.1:$main_phone_demandbase.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$3.1:$main_phone_demandbase.$main_phone_demandbase"><input name="main_phone_demandbase" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$3.1:$main_phone_demandbase.$main_phone_demandbase.0" type="hidden"></div></div><div class="hs_primary_sic field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$3.1:$primary_sic"><label class="" placeholder="Enter your Primary SIC" for="primary_sic-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$3.1:$primary_sic.0"><span data-reactid=".hbspt-forms-0.0:$3.1:$primary_sic.0.0">Primary SIC</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$3.1:$primary_sic.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$3.1:$primary_sic.$primary_sic"><input name="primary_sic" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$3.1:$primary_sic.$primary_sic.0" type="hidden"></div></div></fieldset><fieldset class="form-columns-3" data-reactid=".hbspt-forms-0.0:$4"><div class="hs_revenue_range field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$4.1:$revenue_range"><label class="" placeholder="Enter your Revenue Range" for="revenue_range-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$4.1:$revenue_range.0"><span data-reactid=".hbspt-forms-0.0:$4.1:$revenue_range.0.0">Revenue Range</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$4.1:$revenue_range.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$4.1:$revenue_range.$revenue_range"><input name="revenue_range" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$4.1:$revenue_range.$revenue_range.0" type="hidden"></div></div><div class="hs_stock_ticker field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$4.1:$stock_ticker"><label class="" placeholder="Enter your Stock Ticker" for="stock_ticker-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$4.1:$stock_ticker.0"><span data-reactid=".hbspt-forms-0.0:$4.1:$stock_ticker.0.0">Stock Ticker</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$4.1:$stock_ticker.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$4.1:$stock_ticker.$stock_ticker"><input name="stock_ticker" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$4.1:$stock_ticker.$stock_ticker.0" type="hidden"></div></div><div class="hs_sub_industry field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$4.1:$sub_industry"><label class="" placeholder="Enter your Sub Industry" for="sub_industry-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$4.1:$sub_industry.0"><span data-reactid=".hbspt-forms-0.0:$4.1:$sub_industry.0.0">Sub Industry</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$4.1:$sub_industry.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$4.1:$sub_industry.$sub_industry"><input name="sub_industry" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$4.1:$sub_industry.$sub_industry.0" type="hidden"></div></div></fieldset><fieldset class="form-columns-3" data-reactid=".hbspt-forms-0.0:$5"><div class="hs_watch_list_account_owner field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_owner"><label class="" placeholder="Enter your Watch List Account Owner" for="watch_list_account_owner-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_owner.0"><span data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_owner.0.0">Watch List Account Owner</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_owner.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_owner.$watch_list_account_owner"><input name="watch_list_account_owner" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_owner.$watch_list_account_owner.0" type="hidden"></div></div><div class="hs_watch_list_account_status field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_status"><label class="" placeholder="Enter your Watch List Account Status" for="watch_list_account_status-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_status.0"><span data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_status.0.0">Watch List Account Status</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_status.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_status.$watch_list_account_status"><input name="watch_list_account_status" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_status.$watch_list_account_status.0" type="hidden"></div></div><div class="hs_watch_list_account_type field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_type"><label class="" placeholder="Enter your Watch List Account Type" for="watch_list_account_type-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_type.0"><span data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_type.0.0">Watch List Account Type</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_type.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_type.$watch_list_account_type"><input name="watch_list_account_type" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$5.1:$watch_list_account_type.$watch_list_account_type.0" type="hidden"></div></div></fieldset><fieldset class="form-columns-1" data-reactid=".hbspt-forms-0.0:$6"><div class="hs_watch_list_campaign_code field hs-form-field" style="display:none;" data-reactid=".hbspt-forms-0.0:$6.1:$watch_list_campaign_code"><label class="" placeholder="Enter your Watch List Campaign Code" for="watch_list_campaign_code-231f17cf-5711-4165-9046-952cc5e0d138" data-reactid=".hbspt-forms-0.0:$6.1:$watch_list_campaign_code.0"><span data-reactid=".hbspt-forms-0.0:$6.1:$watch_list_campaign_code.0.0">Watch List Campaign Code</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$6.1:$watch_list_campaign_code.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$6.1:$watch_list_campaign_code.$watch_list_campaign_code"><input name="watch_list_campaign_code" class="hs-input" value="" data-reactid=".hbspt-forms-0.0:$6.1:$watch_list_campaign_code.$watch_list_campaign_code.0" type="hidden"></div></div></fieldset><div class="hs_submit" data-reactid=".hbspt-forms-0.2"><div class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.2.0"></div><div class="actions" data-reactid=".hbspt-forms-0.2.1"><input value="Submit" class="btn h-btn-size-xs h-btn-color-white h-btn-outlined" data-reactid=".hbspt-forms-0.2.1.0" type="submit"></div></div><input name="hs_context" value="{&quot;rumScriptExecuteTime&quot;:3186.685,&quot;rumServiceResponseTime&quot;:3785.245,&quot;rumFormRenderTime&quot;:598.855,&quot;rumTotalRequestTime&quot;:595.7199999999998,&quot;pageUrl&quot;:&quot;https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html&quot;,&quot;pageTitle&quot;:&quot;Project Tungsten: Bringing Spark Closer to Bare Metal | Databricks blog&quot;,&quot;isHostedOnHubspot&quot;:false,&quot;timestamp&quot;:1471566285996,&quot;userAgent&quot;:&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0&quot;,&quot;referrer&quot;:&quot;https://www.google.com&quot;,&quot;hutk&quot;:&quot;3ba98cbc0fef56236cfe435289981bcd&quot;,&quot;originalEmbedContext&quot;:{&quot;portalId&quot;:&quot;438089&quot;,&quot;formId&quot;:&quot;231f17cf-5711-4165-9046-952cc5e0d138&quot;,&quot;css&quot;:&quot;&quot;,&quot;cssRequired&quot;:&quot;&quot;,&quot;target&quot;:&quot;#email-box-197 .js-email-tab-form&quot;,&quot;submitButtonClass&quot;:&quot;btn h-btn-size-xs h-btn-color-white h-btn-outlined&quot;},&quot;recentFieldsCookie&quot;:{},&quot;boolCheckBoxFields&quot;:&quot;&quot;,&quot;dateFields&quot;:&quot;&quot;,&quot;smartFields&quot;:{},&quot;urlParams&quot;:{},&quot;formValidity&quot;:{},&quot;correlationId&quot;:&quot;145e3765-e84b-42a8-9829-2a7d71eea38a&quot;,&quot;disableCookieSubmission&quot;:false}" data-reactid=".hbspt-forms-0.3" type="hidden"></form></div>
+      </div>
+    </div>
+<script id="" type="text/javascript">(function(a,b,c,d,e){a=b.createElement(c);b=b.getElementsByTagName(c)[0];a.async=1;a.id=e;a.src=("https:"==document.location.protocol?"https://":"http://")+d;b.parentNode.insertBefore(a,b)})(window,document,"script","scripts.demandbase.com/xoRL8eto.min.js","demandbase_js_lib");</script><div style="display: none; visibility: hidden;"><script type="text/javascript">(function(a,c,d,e){if(!a.getElementById(d)){var b=a.createElement(c);a=a.getElementsByTagName(c)[0];b.id=d;b.src="//js.hs-analytics.net/analytics/"+Math.ceil(new Date/e)*e+"/438089.js";a.parentNode.insertBefore(b,a)}})(document,"script","hs-analytics",3E5);</script></div><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/oct.js" id="" type="text/javascript"></script>
+<script id="" type="text/javascript">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","//connect.facebook.net/en_US/fbevents.js");fbq("init","1723158351253812");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1723158351253812&amp;ev=PageView&amp;noscript=1"></noscript>
+
+<script id="" type="text/javascript">twttr.conversion.trackPid("ntgt2",{tw_sale_amount:0,tw_order_quantity:0});</script><script src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/adsct.js"></script>
+<noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=ntgt2&amp;p_id=Twitter&amp;tw_sale_amount=0&amp;tw_order_quantity=0">
+  <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=ntgt2&amp;p_id=Twitter&amp;tw_sale_amount=0&amp;tw_order_quantity=0">
+</noscript><iframe style="display: none;" id="db_ect" src="Project%20Tungsten:%20Bringing%20Spark%20Closer%20to%20Bare%20Metal%20%7C%20Databricks%20blog_files/ect.html" height="0" width="0"></iframe></body></html>
