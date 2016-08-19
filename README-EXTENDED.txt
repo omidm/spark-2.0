@@ -22,8 +22,8 @@ Spark 2.0 improvements
 
 Here I summarize the changes in Spark 2.0. I refer to documents from
 Databricks; there are copies of the documents in the "extended/docs/" folder as
-well. Please refer to:
-extended/docs/[spark-2.0, spark-as-compiler, tungsten, catalyst].html
+well. Please refer to: extended/docs/[spark-2.0, spark-as-compiler, tungsten,
+catalyst, whole-stage-code].html
 
 A. Technical Preview of Apache Spark 2.0 Now on Databricks
 Easier, Faster, and Smarter
@@ -100,10 +100,10 @@ http://spark.apache.org/docs/latest/sql-programming-guide.html
        
     scala> case class Sample(vec: Array[Double], label: Double)
 
-    scala> val seeds = Array.tabulate(20)(x => x)
-    scala> val rdd_1 = sc.parallelize(input_seed, 20)
+    scala> val seeds = Array.tabulate(5)(x => x)
+    scala> val rdd_1 = sc.parallelize(seeds, 5)
     scala> val rdd_2 = rdd_1.flatMap(x => Array.tabulate(2)(y => x*10 +y))
-    scala> val rdd_3 = rdd_2.map(x => Sample(Array.tabulate(10)(y => x), 17))
+    scala> val rdd_3 = rdd_2.map(x => Sample(Array.tabulate(3)(y => x), 17))
 
 Print the RDD to get a hang of what it looks like:
 
