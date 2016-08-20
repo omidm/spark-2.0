@@ -199,6 +199,7 @@ http://spark.apache.org/docs/latest/mllib-data-types.html
     scala> import org.apache.spark.ml.linalg.{Vector, Vectors}
 
 
+    scala> import spark.implicits._
     scala> val training = spark.createDataFrame(Seq(
                 (1.0, Vectors.dense(0.0, 1.1, 0.1)),
                 (0.0, Vectors.dense(2.0, 1.0, -1.0))
@@ -229,6 +230,7 @@ there is an easier way to do this.
 Note that in generating the DataFrames for MLlib, it expects the columns to be
 names "label" and "features" as follows:
 
+    scala> import spark.implicits._
     scala> val df = rdd_3.toDF("label", "features")
     scala> df.show()
     scala> df.foreach(e => {println(e(1).asInstanceOf[org.apache.spark.ml.linalg.Vector](0));})
@@ -236,6 +238,24 @@ names "label" and "features" as follows:
     scala> val lr = new LogisticRegression()
     scala> lr.setMaxIter(10).setRegParam(0.01)
     scala> val model = lr.fit(df)
+
+
+
+I have also witten a batch version of the code in "extented/lr-mllib"
+
+** NOTE: to compile with sbt you will need to add "spark-sql" and "spark-mllib" as dependencies.
+Also, do not forget the correct version for Scala (2.11.8) and Spark 2.0.0. For
+example the sbt in "extented/lr-mllib" folder is:
+    
+    1 name := "Logistic Regression"
+    2 
+    3 version := "1.0"
+    4 
+    5 scalaVersion := "2.11.8"
+    6 
+    7 libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
+    8 libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0
+    9 libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.0.0
 
 
 ** NOTE: from the following two option for importing Vector(s), only the second

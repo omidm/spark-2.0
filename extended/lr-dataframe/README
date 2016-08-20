@@ -1,0 +1,39 @@
+
+---------------------------------------------
+Author: Omid Mashayekhi <omidm@stanford.edu>
+---------------------------------------------
+
+Logistic regression program, with DataFrames instead of RDDs. Samples are
+generated, using the RDD interface and then, RDDs are translated in to
+DataFrames.
+
+After launching master and slaves use the spark-submit script as follows:
+  
+../../bin/spark-submit
+      --conf spark.eventLog.enabled=true
+      --conf spark.eventLog.dir=../../log-dir
+      --class LogisticRegression
+      --master spark://<master-url>:7077
+      --deploy-mode client
+      --executor-memory 4g
+      target/scala-2.10/logistic-regression_2.10-1.0.jar
+        <Int dimension>
+        <Int iteration_num>
+        <Int partition_num>
+        <Float sample_num in million>
+        <Int spin_wait in micro seconds>
+
+If the spin wait value is non-zero it replaces each gradient calculation with a
+spin wait that last as long as the argument (in micro seconds).
+
+
+Makefile options:
+    $ make                to build
+    $ make start          start a master and slave locally
+    $ make stop           stop master and slave locally
+    $ make run            to run an example againt local master and slave
+    $ make run-events     activate event logging as well
+    $ make clean          clean generated binary
+    $ make clean-all      clean generated binary and also log directories
+
+
