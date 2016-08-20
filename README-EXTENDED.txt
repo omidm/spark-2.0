@@ -132,11 +132,11 @@ further. Note that WrappedAraay should be cast to Seq not Array.
     scala> df.foreach(e => {println(e(0).asInstanceOf[Seq[Double]]);})
     scala> df.foreach(e => {println(e(0).asInstanceOf[Seq[Double]](0));})
 
-As a batch example, in "spark-1.6/extended" folder I wrote a logistic regression app
-with the RDDs. Now In the "extended/lr-dataframe" folder here I added the version that
-works with DataFrames. In addition to RDD to DataFrame translation it has
-proper casting to get the values from DataFrames. Look at the following
-snippet:
+As a batch example, I have written a logistic regression application that uses
+DataFrames in "extended/lr-dataframe" folder. It is similar to the one in
+"spark-1.6/extended" folder, except that instead of RDDs it uses DataFrames.
+In addition to RDD to DataFrame translation it has proper casting to get the
+values from DataFrames. Look at the following snippets:
 
 
     98     // translate rdd in to dataframes
@@ -176,66 +176,86 @@ example the sbt in "extented/lr-dataframe" folder is:
 ** NOTE: I did not see any improvements in Spark-2.0 for my own RDD
 implementation of logistic regression. Also, changing to DataFrames actually
 slowed things down, most probably due to extra casting. Perhaps the
-"whole-satge" code generation does not kick in and there is a extra casting
+"whole-satge" code generation does not kick in and there is an extra casting
 cost. Next, I will try to use MLlib directly on DataFrames to see possible
 improvements over my base RDD implementations.
 
 
 
+-------------------------------------------------------------------------------
+Spark MLlib
+-------------------------------------------------------------------------------
 
+Please refer to: extended/docs/[ml-pipelines, ml-data-types].html
 
-
-
-===========================================================================================
-======> TO BE COMPLETED
-
+Here, I will go over an example that uses MLLib pipelines for regression. The
+code will run in the Spark interactive shell. It is inspired by:
 http://spark.apache.org/docs/latest/ml-pipeline.html
 http://spark.apache.org/docs/latest/mllib-data-types.html
-===========================================================================================
-./bin/spark-shell --master local[2]
 
-import org.apache.spark.ml.classification.LogisticRegression
-import org.apache.spark.mllib.linalg.{Vector, Vectors}
-import org.apache.spark.ml.param.ParamMap
-import org.apache.spark.sql.Row
+    $ ./bin/spark-shell --master local[2]
 
-case class Sample(vec: org.apache.spark.mllib.linalg.Vector, label: Double)
-
-val input_seed = Array.tabulate(5)(x => x)
-val input_samples_1 = sc.parallelize(input_seed, 5)
-val input_samples_2 = input_samples_1.flatMap(x => Array.tabulate(2)(y => x*10 +y))
-
-val input_samples_3 = input_samples_2.map(x => Sample(Vectors.dense(1.0, 0.0, 3.0), 17))
-input_samples_3.foreach(e => {println(e.vec(0));})
+    scala> import org.apache.spark.ml.classification.LogisticRegression
+    scala> import org.apache.spark.ml.linalg.{Vector, Vectors}
 
 
-val df_3 = input_samples_3.toDF()
-df_3.foreach(e => {println(e(0).asInstanceOf[org.apache.spark.mllib.linalg.Vector](0));})
+    scala> val training = spark.createDataFrame(Seq(
+                (1.0, Vectors.dense(0.0, 1.1, 0.1)),
+                (0.0, Vectors.dense(2.0, 1.0, -1.0))
+                )).toDF("label", "features")
+    scala> training.show()
 
 
-val df_t = spark.createDataFrame(Seq((1.0, Vectors.dense(0.0, 1.1, 0.1)), (0.0, Vectors.dense(2.0, 1.0, -1.0)))).toDF("label", "features")
-df_t.show()
+    scala> val lr = new LogisticRegression()
+    scala> lr.setMaxIter(10).setRegParam(0.01)
+    scala> val model = lr.fit(training)
 
 
-val input_samples_4 = input_samples_2.map(x => (1.0, Vectors.dense(0.0, 1.1, 0.1)))
-input_samples_4.foreach(e => {println(e);})
+Now, another more complex example. First generate the training data using RDDs,
+and then transform them into DataFrames. Note that I do not know how to make,
+parallelize, and partition the training data directly from DataFrames. Perhaps
+there is an easier way to do this.
 
-val df_4 = input_samples_4.toDF()
-df_4.show();
+    $ ./bin/spark-shell --master local[2]
 
-val df_5 = input_samples_4.toDF("label", "features")
-df_5.show();
+    scala> import org.apache.spark.ml.classification.LogisticRegression
+    scala> import org.apache.spark.ml.linalg.{Vector, Vectors}
+
+    scala> val seeds = Array.tabulate(5)(x => x)
+    scala> val rdd_1 = sc.parallelize(seeds, 5)
+    scala> val rdd_2 = rdd_1.flatMap(x => Array.tabulate(2)(y => x*10 +y))
+    scala> val rdd_3 = rdd_2.map(x => ((x%2).asInstanceOf[Double], Vectors.dense(x%2, 1.1, 0.1)))
+
+Note that in generating the DataFrames for MLlib, it expects the columns to be
+names "label" and "features" as follows:
+
+    scala> val df = rdd_3.toDF("label", "features")
+    scala> df.show()
+    scala> df.foreach(e => {println(e(1).asInstanceOf[org.apache.spark.ml.linalg.Vector](0));})
+
+    scala> val lr = new LogisticRegression()
+    scala> lr.setMaxIter(10).setRegParam(0.01)
+    scala> val model = lr.fit(df)
 
 
-val lr = new LogisticRegression()
-lr.setMaxIter(10)
-lr.setRegParam(0.01)
+** NOTE: from the following two option for importing Vector(s), only the second
+one is acceptable for MLlib with DataFrames API:
 
-val model1 = lr.fit(df_t)
-val model2 = lr.fit(df_5)
+        RIGHT> import org.apache.spark.ml.linalg.{Vector, Vectors}
+        WRONG> import org.apache.spark.mllib.linalg.{Vector, Vectors}
 
+If you use the second one you get an exception like this:
 
-===========================================================================================
+    $ java.lang.IllegalArgumentException: requirement failed: Column features must be
+      of type org.apache.spark.ml.linalg.VectorUDT@3bfc3ba7 but was actually
+      org.apache.spark.mllib.linalg.VectorUDT@f71b0bce.
 
+The explanation from MLlib website:
+http://spark.apache.org/docs/latest/ml-guide.html
+"Spark’s linear algebra dependencies were moved to a new project, mllib-local
+(see SPARK-13944). As part of this change, the linear algebra classes were
+copied to a new package, spark.ml.linalg. The DataFrame-based APIs in spark.ml
+now depend on the spark.ml.linalg classes, leading to a few breaking changes,
+predominantly in various model classes (see SPARK-14810 for a full list)."
 
 
