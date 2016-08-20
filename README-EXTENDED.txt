@@ -139,18 +139,25 @@ proper casting to get the values from DataFrames. Look at the following
 snippet:
 
 
-    10     import org.apache.spark.sql.SparkSession
-    10     import spark.implicits._
-    10
-    10     val spark = SparkSession
-    10       .builder()
-    10       .appName("Spark SQL Example")
-    10       .getOrCreate()
-    11 
-    11     val df_samples = rdd_samples.toDF();
-    
-    
-    14                       vector_mul(factor, p(0).asInstanceOf[Seq[Double]])
+    98     // translate rdd in to dataframes
+    99     import org.apache.spark.sql.SparkSession
+    100     val spark = SparkSession.builder().getOrCreate()
+    101     import spark.implicits._
+    102 
+    103     val input_samples = rdd_samples.toDF();
+
+
+    114         val gradient = input_samples
+    115           .map(p => {
+    116                       val vec = p(0).asInstanceOf[Seq[Double]]
+    117                       val label = p(1).asInstanceOf[Double]
+    118                       val factor =  (1 / (1 + math.exp(label * (vector_dot(w, vec)))) - 1) * label;
+    119                       vector_mul(factor, p(0).asInstanceOf[Seq[Double]])
+    120                     }
+    121               )
+    122           .reduce(vector_add(_,_))
+    123         w = vector_add(w, gradient)
+
 
 
 ** NOTE: to compile with sbt you will need to add "spark-sql" as dependencies.
