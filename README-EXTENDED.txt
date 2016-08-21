@@ -105,39 +105,34 @@ http://spark.apache.org/docs/latest/sql-programming-guide.html
     scala> val rdd_2 = rdd_1.flatMap(x => Array.tabulate(2)(y => x*10 +y))
     scala> val rdd_3 = rdd_2.map(x => Sample(Array.tabulate(3)(y => x), 17))
 
-Print the RDD to get a hang of what it looks like:
-
+    // Print the RDD to get a hang of what it looks like:
     scala> rdd_3.foreach(println)
     scala> rdd_3.foreach(e => {println(e.vec);})
     scala> rdd_3.foreach(e => {println(e.vec(0));})
 
-Translate the RDD into DataFrame, for implicit translation from RDD to Data
-Frame you will need to import "spark.implicits._":
-
+    // Translate the RDD into DataFrame, for implicit translation from RDD to
+    // Data Frame you will need to import "spark.implicits._":
     scala> import spark.implicits._
     scala> val df = rdd_3.toDF()
 
-Print the DataFrame, notice the content of each row: the type "WrappedArray" 
-
+    // Print the DataFrame, notice the content of each row: the type "WrappedArray" 
     scala> df.show() 
     scala> df.foreach(e => {println(e);})
 
-To get each column in a row you can use the index:
-
+    // To get each column in a row you can use the index:
     scala> df.foreach(e => {println(e(0));})
 
-But, each column entry is basically a String, you need type casting to go any
-further. Note that WrappedAraay should be cast to Seq not Array.
-
+    // But, each column entry is basically a String, you need type casting to go
+    // any further. Note that WrappedAraay should be cast to Seq (not Array).
     scala> df.foreach(e => {println(e(0).asInstanceOf[Seq[Double]]);})
     scala> df.foreach(e => {println(e(0).asInstanceOf[Seq[Double]](0));})
+
 
 As a batch example, I have written a logistic regression application that uses
 DataFrames in "extended/lr-dataframe" folder. It is similar to the one in
 "spark-1.6/extended" folder, except that instead of RDDs it uses DataFrames.
 In addition to RDD to DataFrame translation it has proper casting to get the
 values from DataFrames. Look at the following snippets:
-
 
     98     // translate rdd in to dataframes
     99     import org.apache.spark.sql.SparkSession
@@ -173,6 +168,7 @@ example the sbt in "extented/lr-dataframe" folder is:
     7 libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
     8 libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0
 
+
 ** NOTE: I did not see any improvements in Spark-2.0 for my own RDD
 implementation of logistic regression. Also, changing to DataFrames actually
 slowed things down, most probably due to extra casting. Perhaps the
@@ -192,12 +188,13 @@ Here, I will go over an example that uses MLLib pipelines for regression. The
 code will run in the Spark interactive shell. It is inspired by:
 http://spark.apache.org/docs/latest/ml-pipeline.html
 http://spark.apache.org/docs/latest/mllib-data-types.html
+http://spark.apache.org/docs/latest/ml-clustering.html
+http://spark.apache.org/docs/latest/ml-classification-regression.html
 
     $ ./bin/spark-shell --master local[2]
 
     scala> import org.apache.spark.ml.classification.LogisticRegression
     scala> import org.apache.spark.ml.linalg.{Vector, Vectors}
-
 
     scala> import spark.implicits._
     scala> val training = spark.createDataFrame(Seq(
@@ -205,7 +202,6 @@ http://spark.apache.org/docs/latest/mllib-data-types.html
                 (0.0, Vectors.dense(2.0, 1.0, -1.0))
                 )).toDF("label", "features")
     scala> training.show()
-
 
     scala> val lr = new LogisticRegression()
     scala> lr.setMaxIter(10).setRegParam(0.01)
@@ -229,8 +225,8 @@ there is an easier way to do this.
     scala> val rdd_2 = rdd_1.flatMap(x => Array.tabulate(2)(y => x*10 +y))
     scala> val rdd_3 = rdd_2.map(x => ((x%2).asInstanceOf[Double], Vectors.dense(x%2, 1.1, 0.1)))
 
-Note that in generating the DataFrames for MLlib, it expects the columns to be
-names "label" and "features" as follows:
+    // Note that in generating the DataFrames for MLlib, it expects the columns
+    // to be named "label" and "features" as follows:
 
     scala> import spark.implicits._
     scala> val df = rdd_3.toDF("label", "features")
@@ -244,7 +240,29 @@ names "label" and "features" as follows:
     scala> println(s"Coefficients: ${model.coefficients} Intercept: ${model.intercept}")
 
 
-I have also witten a batch version of the code in "extented/lr-mllib"
+Here is additional code to the example above that implements KMeans clustering
+algorithm.
+
+    scala> import org.apache.spark.ml.clustering.KMeans
+
+    scala> val kmeans = new KMeans().setK(2).setMaxIter(10)
+    scala> val model = kmeans.fit(df)
+
+    scala> println("Cluster Centers: ")
+    scala> model.clusterCenters.foreach(println)
+
+
+**NOTE: logically, KMeans should only require "features", but it seems that the
+implementation of "toDF()" requires the RDD elements to be tuples. Even the
+example data form Spark documentation generates dataset as DataFrames
+with integer "label" and a vector "features". See the example at:
+http://spark.apache.org/docs/latest/ml-clustering.html
+
+    val dataset = spark.read.format("libsvm").load("data/mllib/sample_kmeans_data.txt")
+
+
+I have also witten a batch version of the code in "extented/lr-mllib" and
+"extented/kmeans-mllib" folders respectively.
 
 ** NOTE: to compile with sbt you will need to add "spark-sql" and "spark-mllib" as dependencies.
 Also, do not forget the correct version for Scala (2.11.8) and Spark 2.0.0. For
