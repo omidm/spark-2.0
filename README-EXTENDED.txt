@@ -186,7 +186,7 @@ improvements over my base RDD implementations.
 Spark MLlib
 -------------------------------------------------------------------------------
 
-Please refer to: extended/docs/[ml-pipelines, ml-data-types].html
+Please refer to: extended/docs/[ml-pipelines, ml-data-types, regression, clustering].html
 
 Here, I will go over an example that uses MLLib pipelines for regression. The
 code will run in the Spark interactive shell. It is inspired by:
@@ -210,6 +210,8 @@ http://spark.apache.org/docs/latest/mllib-data-types.html
     scala> val lr = new LogisticRegression()
     scala> lr.setMaxIter(10).setRegParam(0.01)
     scala> val model = lr.fit(training)
+
+    scala> println(s"Coefficients: ${model.coefficients} Intercept: ${model.intercept}")
 
 
 Now, another more complex example. First generate the training data using RDDs,
@@ -239,6 +241,7 @@ names "label" and "features" as follows:
     scala> lr.setMaxIter(10).setRegParam(0.01)
     scala> val model = lr.fit(df)
 
+    scala> println(s"Coefficients: ${model.coefficients} Intercept: ${model.intercept}")
 
 
 I have also witten a batch version of the code in "extented/lr-mllib"

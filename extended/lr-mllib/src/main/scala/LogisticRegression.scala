@@ -50,8 +50,7 @@ object MyLogisticRegression {
                         .flatMap(x => Array.tabulate(kSamplePerPartition)(y => x*kSamplePerPartition + y))
                         .map(x => {
                                     val label = if (x % 2 == 0) 0.0 else 1.0
-                                    val vec = Vectors.dense(label, 1.1, 0.1)
-                                    // val vec = Array.tabulate(kDimension)(y => prf(x*kDimension+y))
+                                    val vec = Vectors.dense(Array.tabulate(kDimension)(y => prf(x*kDimension+y)))
                                     (label, vec)
                                   }
                             )
@@ -69,6 +68,8 @@ object MyLogisticRegression {
     lr.setMaxIter(kIterationNum).setRegParam(0.01)
     val model = lr.fit(input_samples)
 
+    println("***** Final Model *****")
+    println(s"Coefficients: ${model.coefficients} Intercept: ${model.intercept}")
 
     // for (i <- 0 to kDimension - 1) {
     //   println("***** Final w[" + i + "] = "  + w(i))

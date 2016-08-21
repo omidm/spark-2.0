@@ -4,6 +4,8 @@ SOURCE = src/main/scala/LogisticRegression.scala
 CLASS = MyLogisticRegression
 HOST = $(shell hostname)
 
+.PHONY: default build run run-events clean clean-logs clean-all
+
 default: build
 
 
@@ -42,6 +44,7 @@ stop:
 clean:
 	sbt clean
 
-clean-all:
-	sbt clean
+clean-logs:
 	cd $(SPARK_ROOT); rm -rf work/* log-dir/* logs/*;
+
+clean-all: clean clean-logs
