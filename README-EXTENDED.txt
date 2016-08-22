@@ -130,29 +130,39 @@ http://spark.apache.org/docs/latest/sql-programming-guide.html
 
 As a batch example, I have written a logistic regression application that uses
 DataFrames in "extended/lr-dataframe" folder. It is similar to the one in
-"spark-1.6/extended" folder, except that instead of RDDs it uses DataFrames.
+"extended/lr-rdd" folder, except that instead of RDDs it uses DataFrames.
 In addition to RDD to DataFrame translation it has proper casting to get the
 values from DataFrames. Look at the following snippets:
 
-    98     // translate rdd in to dataframes
-    99     import org.apache.spark.sql.SparkSession
-    100     val spark = SparkSession.builder().getOrCreate()
-    101     import spark.implicits._
-    102 
-    103     val input_samples = rdd_samples.toDF();
+
+    57   def processPartition(samples: Iterator[org.apache.spark.sql.Row], weight: Seq[Double], wait_us: Int)
+    58     : Iterator[Seq[Double]] = {
+    59 
+    60     var local_gradient: Seq[Double] = Array.tabulate(weight.length)(i => 0.0)
+    61 
+    62     if (wait_us != 0) {
+    63       spinWait(wait_us)
+    64       return Iterator(local_gradient)
+    65     }
+    66 
+    67     for (s <- samples) {
+    68       val vec = s(0).asInstanceOf[Seq[Double]]
+    69       val label = s(1).asInstanceOf[Double]
+    70       val factor =  (1 / (1 + math.exp(label * (vectorDot(weight, vec)))) - 1) * label;
+    71       val scaled = vectorScale(vec, factor)
+    72       local_gradient = vectorAdd(scaled, vec)
+    73     }
+    74 
+    75     return Iterator(local_gradient)
+    76   }
 
 
-    114         val gradient = input_samples
-    115           .map(p => {
-    116                       val vec = p(0).asInstanceOf[Seq[Double]]
-    117                       val label = p(1).asInstanceOf[Double]
-    118                       val factor =  (1 / (1 + math.exp(label * (vector_dot(w, vec)))) - 1) * label;
-    119                       vector_mul(factor, p(0).asInstanceOf[Seq[Double]])
-    120                     }
-    121               )
-    122           .reduce(vector_add(_,_))
-    123         w = vector_add(w, gradient)
-
+    121     // translate rdd in to dataframes
+    122     import org.apache.spark.sql.SparkSession
+    123     val spark = SparkSession.builder().getOrCreate()
+    124     import spark.implicits._
+    125 
+    126     val input_samples = rdd_samples.toDF();
 
 
 ** NOTE: to compile with sbt you will need to add "spark-sql" as dependencies.

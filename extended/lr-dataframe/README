@@ -12,7 +12,7 @@ After launching master and slaves use the spark-submit script as follows:
 ../../bin/spark-submit
       --conf spark.eventLog.enabled=true
       --conf spark.eventLog.dir=../../log-dir
-      --class LogisticRegression
+      --class MyLogisticRegression
       --master spark://<master-url>:7077
       --deploy-mode client
       --executor-memory 4g

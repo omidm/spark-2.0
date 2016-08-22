@@ -1,7 +1,7 @@
 
 SPARK_ROOT = ../..
 SOURCE = src/main/scala/LogisticRegression.scala
-CLASS = LogisticRegression
+CLASS = MyLogisticRegression
 HOST = $(shell hostname)
 
 .PHONY: default build run run-events clean clean-logs clean-all
