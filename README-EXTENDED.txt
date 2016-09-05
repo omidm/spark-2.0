@@ -310,3 +310,107 @@ now depend on the spark.ml.linalg classes, leading to a few breaking changes,
 predominantly in various model classes (see SPARK-14810 for a full list)."
 
 
+-------------------------------------------------------------------------------
+Spark 2.0 Large Event Logs Problem
+-------------------------------------------------------------------------------
+
+By setting spark.eventLog.enabled to "true", the event logs will be saved in to
+a file at the master, when application ends. While I did not have any problem
+with the size of logs with Spark 1.6, the files are extremely big in Spark 2.0.
+For example for 100 slaves experiment the final logs only for 2 iteration is
+about 8.3 GB. This is a problem for parsing and also serialization time for JSON
+objects is too excessive. That made it very confusing why applications where
+taking too long to finish with Spark 2.0.
+
+The main problem was "SparkListenerTaskEnd" and specifically the "Accumulables"
+in the "Task Info" field. Also there was extra info in the "Task Metrics"
+field. I removed the excessive data in the source and recompiled the spark.
+
+Currently the source has been changed compared to the downloded file from the
+Spark website. I had to make changes in the following file (the changes diffs
+is attached below):
+
+    core/src/main/scala/org/apache/spark/util/JsonProtocol.scala
+
+NOTE: spark needs to be compiled again after source changes:
+
+    $ build/mvn -DskipTests clean package
+
+
+
+    diff --git a/src/spark-2.0/core/src/main/scala/org/apache/spark/util/JsonProtocol.scala b/src/spark-2.0/core/src/main/scala/org/apache/spark/util/JsonProtocol.scala
+    index 18547d4..3be0429 100644
+    --- a/src/spark-2.0/core/src/main/scala/org/apache/spark/util/JsonProtocol.scala
+    +++ b/src/spark-2.0/core/src/main/scala/org/apache/spark/util/JsonProtocol.scala
+    @@ -279,8 +279,8 @@ private[spark] object JsonProtocol {
+         ("Speculative" -> taskInfo.speculative) ~
+         ("Getting Result Time" -> taskInfo.gettingResultTime) ~
+         ("Finish Time" -> taskInfo.finishTime) ~
+    -    ("Failed" -> taskInfo.failed) ~
+    -    ("Accumulables" -> JArray(taskInfo.accumulables.map(accumulableInfoToJson).toList))
+    +    ("Failed" -> taskInfo.failed)
+    +    // ("Accumulables" -> JArray(taskInfo.accumulables.map(accumulableInfoToJson).toList))
+       }
+     
+       def accumulableInfoToJson(accumulableInfo: AccumulableInfo): JValue = {
+    @@ -324,22 +324,22 @@ private[spark] object JsonProtocol {
+     
+       def taskMetricsToJson(taskMetrics: TaskMetrics): JValue = {
+         val shuffleReadMetrics: JValue =
+    -      ("Remote Blocks Fetched" -> taskMetrics.shuffleReadMetrics.remoteBlocksFetched) ~
+    -        ("Local Blocks Fetched" -> taskMetrics.shuffleReadMetrics.localBlocksFetched) ~
+    -        ("Fetch Wait Time" -> taskMetrics.shuffleReadMetrics.fetchWaitTime) ~
+    -        ("Remote Bytes Read" -> taskMetrics.shuffleReadMetrics.remoteBytesRead) ~
+    -        ("Local Bytes Read" -> taskMetrics.shuffleReadMetrics.localBytesRead) ~
+    -        ("Total Records Read" -> taskMetrics.shuffleReadMetrics.recordsRead)
+    +      ("Remote Blocks Fetched" -> taskMetrics.shuffleReadMetrics.remoteBlocksFetched)
+    +        // ("Local Blocks Fetched" -> taskMetrics.shuffleReadMetrics.localBlocksFetched) ~
+    +        // ("Fetch Wait Time" -> taskMetrics.shuffleReadMetrics.fetchWaitTime) ~
+    +        // ("Remote Bytes Read" -> taskMetrics.shuffleReadMetrics.remoteBytesRead) ~
+    +        // ("Local Bytes Read" -> taskMetrics.shuffleReadMetrics.localBytesRead) ~
+    +        // ("Total Records Read" -> taskMetrics.shuffleReadMetrics.recordsRead)
+         val shuffleWriteMetrics: JValue =
+    -      ("Shuffle Bytes Written" -> taskMetrics.shuffleWriteMetrics.bytesWritten) ~
+    -        ("Shuffle Write Time" -> taskMetrics.shuffleWriteMetrics.writeTime) ~
+    -        ("Shuffle Records Written" -> taskMetrics.shuffleWriteMetrics.recordsWritten)
+    +      ("Shuffle Bytes Written" -> taskMetrics.shuffleWriteMetrics.bytesWritten)
+    +        // ("Shuffle Write Time" -> taskMetrics.shuffleWriteMetrics.writeTime) ~
+    +        // ("Shuffle Records Written" -> taskMetrics.shuffleWriteMetrics.recordsWritten)
+         val inputMetrics: JValue =
+    -      ("Bytes Read" -> taskMetrics.inputMetrics.bytesRead) ~
+    -        ("Records Read" -> taskMetrics.inputMetrics.recordsRead)
+    +      ("Bytes Read" -> taskMetrics.inputMetrics.bytesRead)
+    +        // ("Records Read" -> taskMetrics.inputMetrics.recordsRead)
+         val outputMetrics: JValue =
+    -      ("Bytes Written" -> taskMetrics.outputMetrics.bytesWritten) ~
+    -        ("Records Written" -> taskMetrics.outputMetrics.recordsWritten)
+    +      ("Bytes Written" -> taskMetrics.outputMetrics.bytesWritten)
+    +        // ("Records Written" -> taskMetrics.outputMetrics.recordsWritten)
+         val updatedBlocks =
+           JArray(taskMetrics.updatedBlockStatuses.toList.map { case (id, status) =>
+             ("Block ID" -> id.toString) ~
+    @@ -349,14 +349,14 @@ private[spark] object JsonProtocol {
+         ("Executor Run Time" -> taskMetrics.executorRunTime) ~
+         ("Result Size" -> taskMetrics.resultSize) ~
+         ("JVM GC Time" -> taskMetrics.jvmGCTime) ~
+    -    ("Result Serialization Time" -> taskMetrics.resultSerializationTime) ~
+    -    ("Memory Bytes Spilled" -> taskMetrics.memoryBytesSpilled) ~
+    -    ("Disk Bytes Spilled" -> taskMetrics.diskBytesSpilled) ~
+    -    ("Shuffle Read Metrics" -> shuffleReadMetrics) ~
+    -    ("Shuffle Write Metrics" -> shuffleWriteMetrics) ~
+    -    ("Input Metrics" -> inputMetrics) ~
+    -    ("Output Metrics" -> outputMetrics) ~
+    -    ("Updated Blocks" -> updatedBlocks)
+    +    ("Result Serialization Time" -> taskMetrics.resultSerializationTime)
+    +    // ("Memory Bytes Spilled" -> taskMetrics.memoryBytesSpilled) ~
+    +    // ("Disk Bytes Spilled" -> taskMetrics.diskBytesSpilled) ~
+    +    // ("Shuffle Read Metrics" -> shuffleReadMetrics) ~
+    +    // ("Shuffle Write Metrics" -> shuffleWriteMetrics) ~
+    +    // ("Input Metrics" -> inputMetrics) ~
+    +    // ("Output Metrics" -> outputMetrics) ~
+    +    // ("Updated Blocks" -> updatedBlocks)
+       }
+     
+       def taskEndReasonToJson(taskEndReason: TaskEndReason): JValue = {
+
+

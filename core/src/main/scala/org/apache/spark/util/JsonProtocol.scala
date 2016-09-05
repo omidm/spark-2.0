@@ -279,8 +279,8 @@ private[spark] object JsonProtocol {
     ("Speculative" -> taskInfo.speculative) ~
     ("Getting Result Time" -> taskInfo.gettingResultTime) ~
     ("Finish Time" -> taskInfo.finishTime) ~
-    ("Failed" -> taskInfo.failed) ~
-    ("Accumulables" -> JArray(taskInfo.accumulables.map(accumulableInfoToJson).toList))
+    ("Failed" -> taskInfo.failed)
+    // ("Accumulables" -> JArray(taskInfo.accumulables.map(accumulableInfoToJson).toList))
   }
 
   def accumulableInfoToJson(accumulableInfo: AccumulableInfo): JValue = {
@@ -324,22 +324,22 @@ private[spark] object JsonProtocol {
 
   def taskMetricsToJson(taskMetrics: TaskMetrics): JValue = {
     val shuffleReadMetrics: JValue =
-      ("Remote Blocks Fetched" -> taskMetrics.shuffleReadMetrics.remoteBlocksFetched) ~
-        ("Local Blocks Fetched" -> taskMetrics.shuffleReadMetrics.localBlocksFetched) ~
-        ("Fetch Wait Time" -> taskMetrics.shuffleReadMetrics.fetchWaitTime) ~
-        ("Remote Bytes Read" -> taskMetrics.shuffleReadMetrics.remoteBytesRead) ~
-        ("Local Bytes Read" -> taskMetrics.shuffleReadMetrics.localBytesRead) ~
-        ("Total Records Read" -> taskMetrics.shuffleReadMetrics.recordsRead)
+      ("Remote Blocks Fetched" -> taskMetrics.shuffleReadMetrics.remoteBlocksFetched)
+        // ("Local Blocks Fetched" -> taskMetrics.shuffleReadMetrics.localBlocksFetched) ~
+        // ("Fetch Wait Time" -> taskMetrics.shuffleReadMetrics.fetchWaitTime) ~
+        // ("Remote Bytes Read" -> taskMetrics.shuffleReadMetrics.remoteBytesRead) ~
+        // ("Local Bytes Read" -> taskMetrics.shuffleReadMetrics.localBytesRead) ~
+        // ("Total Records Read" -> taskMetrics.shuffleReadMetrics.recordsRead)
     val shuffleWriteMetrics: JValue =
-      ("Shuffle Bytes Written" -> taskMetrics.shuffleWriteMetrics.bytesWritten) ~
-        ("Shuffle Write Time" -> taskMetrics.shuffleWriteMetrics.writeTime) ~
-        ("Shuffle Records Written" -> taskMetrics.shuffleWriteMetrics.recordsWritten)
+      ("Shuffle Bytes Written" -> taskMetrics.shuffleWriteMetrics.bytesWritten)
+        // ("Shuffle Write Time" -> taskMetrics.shuffleWriteMetrics.writeTime) ~
+        // ("Shuffle Records Written" -> taskMetrics.shuffleWriteMetrics.recordsWritten)
     val inputMetrics: JValue =
-      ("Bytes Read" -> taskMetrics.inputMetrics.bytesRead) ~
-        ("Records Read" -> taskMetrics.inputMetrics.recordsRead)
+      ("Bytes Read" -> taskMetrics.inputMetrics.bytesRead)
+        // ("Records Read" -> taskMetrics.inputMetrics.recordsRead)
     val outputMetrics: JValue =
-      ("Bytes Written" -> taskMetrics.outputMetrics.bytesWritten) ~
-        ("Records Written" -> taskMetrics.outputMetrics.recordsWritten)
+      ("Bytes Written" -> taskMetrics.outputMetrics.bytesWritten)
+        // ("Records Written" -> taskMetrics.outputMetrics.recordsWritten)
     val updatedBlocks =
       JArray(taskMetrics.updatedBlockStatuses.toList.map { case (id, status) =>
         ("Block ID" -> id.toString) ~
@@ -349,14 +349,14 @@ private[spark] object JsonProtocol {
     ("Executor Run Time" -> taskMetrics.executorRunTime) ~
     ("Result Size" -> taskMetrics.resultSize) ~
     ("JVM GC Time" -> taskMetrics.jvmGCTime) ~
-    ("Result Serialization Time" -> taskMetrics.resultSerializationTime) ~
-    ("Memory Bytes Spilled" -> taskMetrics.memoryBytesSpilled) ~
-    ("Disk Bytes Spilled" -> taskMetrics.diskBytesSpilled) ~
-    ("Shuffle Read Metrics" -> shuffleReadMetrics) ~
-    ("Shuffle Write Metrics" -> shuffleWriteMetrics) ~
-    ("Input Metrics" -> inputMetrics) ~
-    ("Output Metrics" -> outputMetrics) ~
-    ("Updated Blocks" -> updatedBlocks)
+    ("Result Serialization Time" -> taskMetrics.resultSerializationTime)
+    // ("Memory Bytes Spilled" -> taskMetrics.memoryBytesSpilled) ~
+    // ("Disk Bytes Spilled" -> taskMetrics.diskBytesSpilled) ~
+    // ("Shuffle Read Metrics" -> shuffleReadMetrics) ~
+    // ("Shuffle Write Metrics" -> shuffleWriteMetrics) ~
+    // ("Input Metrics" -> inputMetrics) ~
+    // ("Output Metrics" -> outputMetrics) ~
+    // ("Updated Blocks" -> updatedBlocks)
   }
 
   def taskEndReasonToJson(taskEndReason: TaskEndReason): JValue = {
