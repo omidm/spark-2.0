@@ -15,7 +15,7 @@ STD_OUT_LOG                = 'ec2_log.txt'
 OUTPUT_PATH                = 'output/'
 
 # Path configuration
-SPARK_ROOT                 = '~/cloud/src/spark/'
+SPARK_ROOT                 = '~/cloud/src/spark-2.0/'
 REL_EVENT_LOG_DIR          = 'log-dir/'
 
 
@@ -201,7 +201,7 @@ def clean_logs(master_dns, slave_dnss):
   command +=  'rm -rf ' + SPARK_ROOT + 'work/;'
   command +=  'rm -rf ' + SPARK_ROOT + 'logs/;'
 
-  print '** Cleaning master: ' + master_dns
+  # print '** Cleaning master: ' + master_dns
   subprocess.Popen(['ssh', '-q', '-i', config.PRIVATE_KEY,
       '-o', 'UserKnownHostsFile=/dev/null',
       '-o', 'StrictHostKeyChecking=no',
@@ -209,7 +209,7 @@ def clean_logs(master_dns, slave_dnss):
 
 
   for dns in slave_dnss:
-    print '** Cleaning slave: ' + dns
+    # print '** Cleaning slave: ' + dns
     subprocess.Popen(['ssh', '-q', '-i', config.PRIVATE_KEY,
         '-o', 'UserKnownHostsFile=/dev/null',
         '-o', 'StrictHostKeyChecking=no',

@@ -8,7 +8,7 @@
 # US West (Oregon) Region
 EC2_LOCATION                    = 'us-west-2'
 UBUNTU_AMI                      = 'ami-fa9cf1ca'
-SPARK_AMI                       = 'ami-0ce5166c'
+SPARK_AMI                       = 'ami-8869b8e8'
 KEY_NAME                        = 'omidm-sing-key-pair-us-west-2'
 MASTER_INSTANCE_TYPE            = 'c3.4xlarge'
 SLAVE_INSTANCE_TYPE             = 'c3.2xlarge'
@@ -23,7 +23,8 @@ SLAVE_NUM                       = 100
 # Spark configurations
 SLAVE_CORE_NUM                  = 8
 EXECUTOR_MEMORY                 = '12g'
-APPLICATION                     = 'lr-mllib' # 'lr-mllib' 'lr-rdd' 'kmeans-mllib' 'kmeans-rdd' 
+APPLICATION                     = 'lr-rdd' # 'lr-mllib' 'lr-rdd' 'kmeans-mllib' 'kmeans-rdd' 
+
 DEACTIVATE_EVENT_LOGING         = False
 ACTIVATE_SPARK_INFO_LOGING      = False
 
@@ -33,8 +34,9 @@ ACTIVATE_SPARK_INFO_LOGING      = False
 DIMENSION                       = 10
 CLUSTER_NUM                     = 2
 ITERATION_NUM                   = 30
-PARTITION_NUM                   = 8000
-SAMPLE_NUM_M                    = 544
-SPIN_WAIT_US                    = 0
+PARTITION_PER_CORE              = 10
+PARTITION_NUM                   = SLAVE_NUM * SLAVE_CORE_NUM * PARTITION_PER_CORE # 8000
+SAMPLE_NUM_M                    = 544 # PARTITION_NUM / 1000000.0
+SPIN_WAIT_US                    = 0 # 4000 * (100 / SLAVE_NUM)
 
 
