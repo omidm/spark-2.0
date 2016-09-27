@@ -42,7 +42,7 @@ object MyKMeans {
     var kSamplePerPartition : Int = (kSampleNum.toFloat / kPartitionNum.toFloat).toInt
 
     
-    val conf = new SparkConf().setAppName("LogisticRegression")
+    val conf = new SparkConf().setAppName("KMeans")
     val sc = new SparkContext(conf)
 
 
