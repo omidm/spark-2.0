@@ -1,5 +1,8 @@
 # Apache Spark
 
+**NOTE**: this repository is a modified version of the initial distribution.
+Please see the `README-EXTENDED.txt` file.
+
 Spark is a fast and general cluster computing system for Big Data. It provides
 high-level APIs in Scala, Java, Python, and R, and an optimized engine that
 supports general computation graphs for data analysis. It also supports a
